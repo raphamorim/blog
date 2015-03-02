@@ -1,0 +1,45 @@
+#
+# This is the TODO file of my personal blog
+#
+
+
+[] Backend
+    [] Admin
+
+    [] posts
+        [] post status
+        [] paragraph
+            [] WYSIWYG
+        [] video
+        [] image
+            [] Upload image
+        [] code
+    
+    [] Home page
+        [] List of recent posts
+        [] List of most popular posts
+
+    [] search
+
+[] Integrations
+    [] google analytics
+    [] comments
+    [] url shortener
+    [] RSS
+    [] tag
+    [] Sitemap
+
+[] Frontend
+    [] Html
+        [] Header
+        [] Content template
+        [] Footer
+
+    [] CSS
+        [] Paragraph style
+        [] video style
+        [] Image style
+            [] left
+            [] center
+            [] right
+        [] Code style
