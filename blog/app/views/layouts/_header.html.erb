@@ -17,11 +17,23 @@
 
     <section>
         <div class="author">
+            <figure>
+                <img src="assets/images/author.png"
+                     alt="Gustavo Pantuza"
+                     width="100"
+                     height="100">
+             </figure>
+            <span>Gustavo Pantuza</span>
         </div>
     </section>
 
     <section>
         <div class="search">
+            <%= form_tag("/search", method: "get") do %>
+              <%= label_tag(:q, "Search for:") %>
+              <%= text_field_tag(:q) %>
+              <%= submit_tag("Search") %>
+            <% end %>
         </div>
     </section>
 
