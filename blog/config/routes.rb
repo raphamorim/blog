@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  # search route
+  get '/search' => 'articles#search'
+
+  # blog routes
   get 'home/index'
   get 'article/index'
 
