@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def search
+    @articles = Article.search(params[:q])
+  end
+
   def create
     @article = Article.new(article_params)
 
