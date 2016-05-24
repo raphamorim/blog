@@ -14,9 +14,6 @@
  *= require_self
  */
 
-body {
-    height: 100%;
-}
 
 header {
     display: block;
@@ -25,7 +22,11 @@ header {
 }
 
 h1 {
+    color: green;
     text-align: center;
+    font-size: medium;
+    font-family: sans-serif;
+    font-style: italic;
 }
 
 .logo {
@@ -34,7 +35,12 @@ h1 {
 }
 
 .logo pre {
+    color: green;
     font-size: 10px;
+    font-weight: bold;
+    position: relative;
+    bottom: 50px;
+    right: 50px;
 }
 
 .author {
@@ -46,15 +52,49 @@ h1 {
     width: 100px;
 }
 
+.search {
+    float: right;
+    width: 100%;
+}
+
+.search form {
+    width: 100%;
+    text-align: right;
+}
+
+.search form input[type=text] {
+    width: 50%;
+}
+
+.search form input[type=submit] {
+    width: 15%;
+    font-size: large;
+    font-family: monospace;
+    box-shadow: 0px 0px 16px rgba(0,255,0, .75);)
+}
+
 .author span {
     width: 100px;
     padding-left: 6%;
     position: relative;
     bottom: 20px;
+     color: yellow;
+     font-family: monospace;
+     font-size: large;
 }
 
 .nav-bar {
     clear: both;
+}
+
+nav a {
+    color: #4d5f69;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: .7em 0;
+    padding: .55em;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 hr {
