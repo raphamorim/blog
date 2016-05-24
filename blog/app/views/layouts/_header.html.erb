@@ -15,8 +15,8 @@
         </pre>
     </div>
 
-    <section>
-        <div class="author">
+    <section class="author">
+        <div >
             <figure>
             <%= image_tag "author.png",
                 size: "100",
@@ -24,9 +24,7 @@
             </figure>
             <span>Gustavo Pantuza</span>
         </div>
-    </section>
 
-    <section>
         <div class="search">
             <%= form_tag("/search", method: "get") do %>
               <%= label_tag(:q, "Search for:") %>
@@ -36,7 +34,7 @@
         </div>
     </section>
 
-    <nav>
+    <nav class="nav-bar">
         <%= link_to 'Home', root_path %> |
         <%= link_to 'Artigos', controller: 'articles' %>
     </nav>
