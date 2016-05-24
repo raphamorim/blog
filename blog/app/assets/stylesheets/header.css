@@ -29,8 +29,12 @@ h1 {
 }
 
 .logo {
-    text-align: left;
+    float: left;
     width:33%;
+}
+
+.logo pre {
+    font-size: 10px;
 }
 
 .author {
@@ -43,8 +47,17 @@ h1 {
 }
 
 .author span {
-    text-align: right;
+    width: 100px;
+    padding-left: 6%;
     position: relative;
-    left: 50%;
-    bottom: 50px;
+    bottom: 20px;
+}
+
+.nav-bar {
+    clear: both;
+}
+
+hr {
+    border: 5px dotted;
+    color: #236;
 }
