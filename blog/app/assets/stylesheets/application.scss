@@ -14,7 +14,30 @@
  *= require_self
  */
 
+
+
 body {
     height: 100%;
+
     background-color: black;
+
+    main {
+        min-height: 500px;
+    }
 }
+
+
+
+/**
+ * Animation of blinking
+ */
+.blink {
+  animation: blinker 500ms steps(5, start) infinite;
+}
+
+@keyframes blinker {
+  to {
+    visibility: hidden;
+  }
+}
+
