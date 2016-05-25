@@ -1,103 +1,87 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-
 header {
     display: block;
     width: 100%;
     height: 20%;
+
+    h1 {
+        color: green;
+        text-align: center;
+        font-size: medium;
+        font-family: sans-serif;
+        font-style: italic;
+    }
+
+    .logo {
+        float: left;
+        width:33%;
+
+        pre {
+            color: green;
+            font-size: 10px;
+            font-weight: bold;
+            position: relative;
+            bottom: 50px;
+            right: 50px;
+        }
+    }
+
+    .author {
+        width: 50%;
+        float: right;
+
+        figure {
+            width: 100px;
+        }
+
+        span {
+            width: 100px;
+            padding-left: 6%;
+            position: relative;
+            bottom: 20px;
+             color: yellow;
+             font-family: monospace;
+             font-size: large;
+        }
+    }
+
+    .search {
+        float: right;
+        width: 100%;
+
+        form {
+            width: 100%;
+            text-align: right;
+
+            input[type=text] {
+                width: 50%;
+            }
+
+            input[type=submit] {
+                width: 15%;
+                font-size: large;
+                font-family: monospace;
+                box-shadow: 0px 0px 16px rgba(0,255,0, .75);
+            }
+        }
+    }
+
+    .nav-bar {
+        clear: both;
+
+        a {
+            color: #4d5f69;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin: .7em 0;
+            padding: .55em;
+            text-decoration: none;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    }
+
+    hr {
+        border: 5px dotted;
+        color: #236;
+    }
 }
 
-h1 {
-    color: green;
-    text-align: center;
-    font-size: medium;
-    font-family: sans-serif;
-    font-style: italic;
-}
-
-.logo {
-    float: left;
-    width:33%;
-}
-
-.logo pre {
-    color: green;
-    font-size: 10px;
-    font-weight: bold;
-    position: relative;
-    bottom: 50px;
-    right: 50px;
-}
-
-.author {
-    width: 50%;
-    float: right;
-}
-
-.author figure {
-    width: 100px;
-}
-
-.search {
-    float: right;
-    width: 100%;
-}
-
-.search form {
-    width: 100%;
-    text-align: right;
-}
-
-.search form input[type=text] {
-    width: 50%;
-}
-
-.search form input[type=submit] {
-    width: 15%;
-    font-size: large;
-    font-family: monospace;
-    box-shadow: 0px 0px 16px rgba(0,255,0, .75);)
-}
-
-.author span {
-    width: 100px;
-    padding-left: 6%;
-    position: relative;
-    bottom: 20px;
-     color: yellow;
-     font-family: monospace;
-     font-size: large;
-}
-
-.nav-bar {
-    clear: both;
-}
-
-nav a {
-    color: #4d5f69;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin: .7em 0;
-    padding: .55em;
-    text-decoration: none;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-hr {
-    border: 5px dotted;
-    color: #236;
-}
