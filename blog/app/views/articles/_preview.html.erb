@@ -2,29 +2,33 @@
 
     <article class="preview">
         <section class="left">
-            <figure>
-                <img
-                    src""
-                    width="200"
-                    height="200"
-                    alt="" />
-                <figcaption>
-                </figcaption>
-            </figure>
+            <%= link_to article_path(article) do %>
+                <figure>
+                    <img
+                        src""
+                        width="200"
+                        height="200"
+                        alt="" />
+                    <figcaption>
+                    </figcaption>
+                </figure>
+            <% end %>
         </section>
 
         <section class="right">
-            <header>
-                <h1><%= article.title %></h1>
-            </header>
-            <span>
-                <%= article.text %>
-            </span>
+
+            <%= link_to article_path(article) do %>
+                <header>
+                    <h1><%= article.title %></h1>
+                </header>
+                <span>
+                    <%= article.text %>
+                </span>
+            <% end %>
         </section>
 
         <section class="bottom">
             <ul>
-                <li> <%= link_to 'Show', article_path(article) %></li>
                 <li> <%= link_to 'Edit', edit_article_path(article) %></li>
                 <li> <%= link_to 'Destroy', article_path(article),
                       method: :delete,
