@@ -1,3 +1,45 @@
-// Place all the styles related to the articles controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.preview {
+    width: 60%;
+    position: relative;
+    left: 25%;
+
+    .left {
+        float: left;
+        width: 280px;
+        figure {
+            width: 200px;
+            height: 200px;
+            img {
+            }
+        }
+    }
+
+    .right {
+        float: right;
+        width: 45%;
+        right: 25%;
+        position: relative;
+        header{
+            h1 {
+                text-align: left;
+                text-transform: uppercase;
+                font-family: monospace;
+                letter-spacing: 2px;
+                font-style: normal;
+            }
+        }
+
+        span {
+            color: white;
+            letter-spacing: 1px;
+            font-family: monospace;
+        }
+    }
+
+    .bottom {
+        clear: both;
+        ul {
+        }
+    }
+}
