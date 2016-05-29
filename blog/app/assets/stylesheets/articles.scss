@@ -40,6 +40,26 @@
     .bottom {
         clear: both;
         ul {
+            height: 25px;
+            width: 200px;
+            bottom: 20px;
+            position: relative;
+
+            li {
+                color: #4d5f69;
+                font-weight: bold;
+                font-family: monospace;
+                font-size: small;
+                letter-spacing: 2px;
+                list-style: none;
+            }
+
+            li:first-child {
+                float: left;
+            }
+            li:last-child {
+                float: right;
+            }
         }
     }
 }
