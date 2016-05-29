@@ -4,6 +4,13 @@ class Article < ActiveRecord::Base
   validates :title, presence: true,
                     length: { minimum: 5 }
 
+
+  def save
+
+    self.permalink = self.title.parameterize unless self.permalink
+    super
+  end
+
   def self.search(search)
     if search
       self.where('title LIKE ?', "%#{search}%")
