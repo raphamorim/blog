@@ -1,10 +1,11 @@
 <%= form_for @article do |f| %>
- 
+
+
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@article.errors.count, "error") %> prohibited
-        this article from being saved:
+        <%= pluralize(@article.errors.count, "error") %> Não foi possível
+        salvar o artigo:
       </h2>
       <ul>
         <% @article.errors.full_messages.each do |msg| %>
@@ -13,20 +14,33 @@
       </ul>
     </div>
   <% end %>
- 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
- 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
- 
+
+
+  <section class="article-form">
+      <p>
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+      </p>
+
+      <p>
+        <%= f.label :permalink %><br>
+        <%= f.text_field :permalink %>
+      </p>
+
+      <p>
+        <%= f.label :abstract%><br>
+        <%= f.text_area :abstract %>
+      </p>
+
+      <p>
+        <%= f.label :text %><br>
+        <%= f.text_area :text %>
+      </p>
+
+      <p class="article-submit">
+        <%= f.submit %>
+      </p>
+  </section>
+
 <% end %>
 
