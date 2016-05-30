@@ -1,5 +1,16 @@
-<h1>Edit article</h1>
- 
-<%= render 'form' %>
- 
-<%= link_to 'Back', articles_path %>
+<section>
+    <header>
+        <h1>Editar artigo</h1>
+    </header>
+
+    <div class="action">
+        <ul>
+            <li>
+                <%= link_to 'Artigos', articles_path %>
+            </li>
+        </ul>
+    </div>
+
+    <%= render 'form' %>
+
+</section>
