@@ -11,6 +11,10 @@ class Article < ActiveRecord::Base
     super
   end
 
+  def to_param
+    self.permalink
+  end
+
   def self.search(search)
     if search
       self.where('title LIKE ?', "%#{search}%")
