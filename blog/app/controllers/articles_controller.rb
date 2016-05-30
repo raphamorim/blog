@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find_by_permalink(params[:id])
   end
 
   def search
@@ -29,11 +29,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.find_by_permalink(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = Article.find_by_permalink(params[:id])
 
     if @article.update(article_params)
       redirect_to @article
@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
+    @article = Article.find_by_permalink(params[:id])
     @article.destroy
 
     redirect_to articles_path
@@ -51,6 +51,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :text)
+      params.require(:article).permit(:title, :subtitle, :abstract, :text)
     end
 end
