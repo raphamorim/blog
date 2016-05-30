@@ -27,9 +27,9 @@
         <%= f.text_field :subtitle %>
       </p>
 
-      <p>
-        <%= f.label :permalink %><br>
-        <%= f.text_field :permalink %>
+      <p class="article-permalink-p">
+        <%= f.label :permalink %>
+        <%= f.text_field :permalink, :disabled=>"disabled" %>
       </p>
 
       <p>
