@@ -1,12 +1,22 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+<section class="article-show">
+    <article>
+        <header>
+            <h1><%= @article.title %></h1>
+            <h3><%= @article.subtitle %></h3>
+            <time>Atualizado em <%= @article.updated_at.strftime "%Y/%m/%d %H:%M" %></time>
+        </header>
+
+        <p><%= @article.text %></p>
+
+        </hr>
+
+        <section>
+            <p></p>
+        </section>
+
+    </article>
+</section>
+
 
 <h2>Comments</h2>
 <%= render @article.comments %>
