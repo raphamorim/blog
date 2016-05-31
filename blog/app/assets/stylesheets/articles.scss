@@ -192,3 +192,50 @@
         }
     }
 }
+
+/* Show article */
+
+.article-show {
+
+    margin-top: 10%;
+
+    * {
+        width: 80%;
+        left: 10%;
+        position: relative;
+    }
+
+    article {
+
+        header {
+
+            h1 {
+                font-size: 40px;
+                font-family: monospace;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                font-style: normal;
+                font-weight: normal;
+                text-align: center;
+            }
+
+            h3 {
+                color: gray;
+                text-align: center;
+                font-style: italic;
+                position: relative;
+                bottom: 35px;
+            }
+
+            time {
+                color: gray;
+                font-family: monospace;
+                font-size: small;
+            }
+        }
+
+        p {
+            color: white;
+        }
+    }
+}
