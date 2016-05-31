@@ -18,7 +18,7 @@
     .right {
         float: right;
         width: 45%;
-        right: 25%;
+        right: 20%;
         position: relative;
         header{
             h1 {
@@ -39,6 +39,8 @@
 
     .bottom {
         clear: both;
+        top: 10px;
+        position: relative;
         ul {
             height: 25px;
             width: 200px;
