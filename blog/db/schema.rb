@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601185153) do
+ActiveRecord::Schema.define(version: 20160601185323) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20160601185153) do
   end
 
   add_index "paragraph_blocks", ["article_id"], name: "index_paragraph_blocks_on_article_id"
+
+  create_table "photo_blocks", force: :cascade do |t|
+    t.string   "path"
+    t.integer  "order"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "photo_blocks", ["article_id"], name: "index_photo_blocks_on_article_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "article_id"
