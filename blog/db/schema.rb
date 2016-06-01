@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601183911) do
+ActiveRecord::Schema.define(version: 20160601184952) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160601183911) do
   end
 
   add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true
+
+  create_table "code_blocks", force: :cascade do |t|
+    t.text     "code"
+    t.integer  "order"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "code_blocks", ["article_id"], name: "index_code_blocks_on_article_id"
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
