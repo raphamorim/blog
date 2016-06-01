@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531013051) do
+ActiveRecord::Schema.define(version: 20160601183911) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -50,5 +50,15 @@ ActiveRecord::Schema.define(version: 20160531013051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "video_blocks", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "order"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "video_blocks", ["article_id"], name: "index_video_blocks_on_article_id"
 
 end
