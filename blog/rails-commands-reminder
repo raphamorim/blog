@@ -3,3 +3,4 @@ rails generate migration AddPermalinkToArticles permalink:string:uniq:index
 rake db:migrate
 bundle install
 rails generate react:install
+rails generate react:component ContentBlock content_type:array --es6
