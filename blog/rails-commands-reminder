@@ -1,3 +1,5 @@
 rails generate model Comment commenter:string body:text article:references
 rails generate migration AddPermalinkToArticles permalink:string:uniq:index
 rake db:migrate
+bundle install
+rails generate react:install
