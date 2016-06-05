@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160601185323) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.string   "subtitle"
   end
 
-  add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true
+  add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true, using: :btree
 
   create_table "code_blocks", force: :cascade do |t|
     t.text     "code"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "code_blocks", ["article_id"], name: "index_code_blocks_on_article_id"
+  add_index "code_blocks", ["article_id"], name: "index_code_blocks_on_article_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
 
   create_table "paragraph_blocks", force: :cascade do |t|
     t.text     "paragraph"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "paragraph_blocks", ["article_id"], name: "index_paragraph_blocks_on_article_id"
+  add_index "paragraph_blocks", ["article_id"], name: "index_paragraph_blocks_on_article_id", using: :btree
 
   create_table "photo_blocks", force: :cascade do |t|
     t.string   "path"
@@ -63,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "photo_blocks", ["article_id"], name: "index_photo_blocks_on_article_id"
+  add_index "photo_blocks", ["article_id"], name: "index_photo_blocks_on_article_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "article_id"
@@ -72,8 +75,8 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id"
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
@@ -89,6 +92,13 @@ ActiveRecord::Schema.define(version: 20160601185323) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "video_blocks", ["article_id"], name: "index_video_blocks_on_article_id"
+  add_index "video_blocks", ["article_id"], name: "index_video_blocks_on_article_id", using: :btree
 
+  add_foreign_key "code_blocks", "articles"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "paragraph_blocks", "articles"
+  add_foreign_key "photo_blocks", "articles"
+  add_foreign_key "taggings", "articles"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "video_blocks", "articles"
 end
