@@ -47,3 +47,6 @@ end
 
 # React Rails gem
 gem 'react-rails'
+
+# Postgres
+gem 'pg'
