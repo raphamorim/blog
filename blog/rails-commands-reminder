@@ -4,3 +4,5 @@ rake db:migrate
 bundle install
 rails generate react:install
 rails generate react:component ContentBlock content_type:array --es6
+rails generate migration AddBlocksToArticle blocks:json
+rails destroy model CodeBlock
