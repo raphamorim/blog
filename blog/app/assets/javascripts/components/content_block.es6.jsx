@@ -2,7 +2,7 @@ class ContentBlock extends React.Component {
   render () {
     return (
       <div>
-        <div>Content Type: {this.props.contentType}</div>
+        <div className="article-content-type" >Content Type: {this.props.contentType}</div>
       </div>
     );
   }
