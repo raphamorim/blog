@@ -4,10 +4,10 @@ class ContentBlock extends React.Component {
       <section className="content-blocks">
         <div className="article-content-type" >
             <ul>
-                <li>Vídeo</li>
-                <li>Foto</li>
-                <li>Parágrafo</li>
-                <li>Código</li>
+                <li className="video"><a></a></li>
+                <li className="photo"><a></a></li>
+                <li className="code"><a></a></li>
+                <li className="paragraph"><a></a></li>
             </ul>
         </div>
       </section>
