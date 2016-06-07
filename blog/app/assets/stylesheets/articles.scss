@@ -251,18 +251,39 @@
 
 .content-blocks {
     color: white;
-    width: 200px;
-    height: 50px;
+    width: 50px;
+    height: 150px;
 
     ul {
 
         li {
             list-style: none;
-            width: 20px;
-            height: 20px;
+            width: 45px;
+            height: 45px;
             padding: 0 5% 0 5%;
             background-color: #A58EA2;
-            margin: 2%;
+            margin: 30%;
+            background-size: 55%;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            border-radius: 5px;
+        }
+
+        .video {
+            background-image: url(asset-path('video.svg'));
+        }
+
+        .photo {
+            background-image: url(asset-path('photo.svg'));
+
+        }
+
+        .code {
+            background-image: url(asset-path('code.svg'));
+        }
+
+        .paragraph {
+            background-image: url(asset-path('paragraph.svg'));
         }
     }
 }
