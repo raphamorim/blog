@@ -1,11 +1,26 @@
-var ContentBlockList = React.createClass({
-  propTypes: {
-    items: React.PropTypes.array
-  },
+class ContentBlockList extends React.Component {
 
-  render: function() {
+  propTypes: {
+    blocks: React.PropTypes.array
+  }
+
+  render () {
+
+    const contentList = this.props.blocks.map(function (component) {
+
+      switch (component.constructor.displayName) {
+        case "VideoBlock":
+          return <VideoBlock />
+          break;
+        default:
+          console.log("Component not found");
+      }
+    });
+
     return (
-      <div className="ContentBlockList">{this.props.items}</div>
+      <div className="ContentBlockList">
+        {contentList}
+      </div>
     );
   }
-});
+};
