@@ -37,12 +37,8 @@
         <%= f.text_area :abstract %>
       </p>
 
-      <p class="content">
-        <%= react_component('ContentBlockList') %>
-      </p>
-
       <p>
-        <%= react_component('ContentBlock') %>
+        <%= react_component('ContentBlock', contentBlocks: []) %>
       </p>
 
       <p class="article-tags-p">
