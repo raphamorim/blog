@@ -1,14 +1,11 @@
 class VideoBlock extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor () {
+      super();
+      this.state = {
         visible: false,
         published: false
-    };
-  }
-
-  onClick () {
-    this.setState({visble: true});
+      }
   }
 
   render () {
