@@ -11,11 +11,16 @@ class ContentBlock extends React.Component {
 
   handleClick (event) {
 
-    const blockType = event.currentTarget.parentNode.className;
+    event.preventDefault();
+    event.stopPropagation();
 
+    const blockType = event.currentTarget.parentNode.className;
+    console.log(blockType);
+
+    const nBlocks = this.PropTypes.contentBlocks.size;
     switch (blockType) {
       case "video":
-          this.props.contentBlocks.push(<VideoBlock />);
+          this.props.contentBlocks.push(<VideoBlock key={nBlocks}/>);
           break;
       default:
           console.log("Unknown block type");
