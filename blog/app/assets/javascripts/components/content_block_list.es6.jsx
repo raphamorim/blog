@@ -8,7 +8,7 @@ class ContentBlockList extends React.Component {
 
     const contentList = this.props.blocks.map(function (component) {
 
-      switch (component.constructor.displayName) {
+      switch (component.type.name) {
         case "VideoBlock":
           return <VideoBlock />
           break;
