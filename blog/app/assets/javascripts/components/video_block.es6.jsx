@@ -9,14 +9,14 @@ class VideoBlock extends React.Component {
   }
 
   render () {
-    var form = (
+    const form = (
         <p>
-            <label>Vídeo url</label>
+            <label>Video url</label>
             <input type="text" />
         </p>
     );
 
-    var video = (
+    const video = (
         <div className="video-block">
             <video width="640" height="480" controls>
                 <source src="{this.props.url}" ></source>
