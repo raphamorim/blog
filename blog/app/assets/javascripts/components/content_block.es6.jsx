@@ -14,13 +14,12 @@ class ContentBlock extends React.Component {
     event.preventDefault();
     event.stopPropagation();
 
-    const blockType = event.currentTarget.parentNode.className;
-    console.log(blockType);
+    const blockType = event.currentTarget.className;
+    const nBlocks = this.props.contentBlocks.size;
 
-    const nBlocks = this.PropTypes.contentBlocks.size;
     switch (blockType) {
       case "video":
-          this.props.contentBlocks.push(<VideoBlock key={nBlocks}/>);
+          this.props.contentBlocks.push(<VideoBlock key={nBlocks + 1}/>);
           break;
       default:
           console.log("Unknown block type");
@@ -34,10 +33,10 @@ class ContentBlock extends React.Component {
         <ContentBlockList blocks={this.props.contentBlocks} />
         <div className="article-content-type" >
           <ul>
-            <li className="video"><a href="#" onClick={this.handleClick}></a></li>
-            <li className="photo"><a href="#" onClick={this.handleClick}></a></li>
-            <li className="code"><a href="#" onClick={this.handleClick}></a></li>
-            <li className="paragraph"><a href="#" onClick={this.handleClick}></a></li>
+            <li className="video" onClick={this.handleClick}><a href="#"></a></li>
+            <li className="photo" onClick={this.handleClick}><a href="#"></a></li>
+            <li className="code" onClick={this.handleClick}><a href="#"></a></li>
+            <li className="paragraph" onClick={this.handleClick}><a href="#"></a></li>
           </ul>
         </div>
       </section>
