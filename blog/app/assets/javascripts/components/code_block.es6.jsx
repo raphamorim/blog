@@ -10,14 +10,14 @@ class CodeBlock extends React.Component {
 
   render () {
     const form = (
-      <p>
+      <p className="code-block-form">
         <label>Source Code</label>
-        <textarea rows="5" columns="60"></textarea>
+        <textarea rows="15" cols="80"></textarea>
       </p>
     );
 
     const source = (
-        <pre>{this.props.source}</pre>
+        <pre className="prettyprint linenums">{this.props.source}</pre>
     );
 
     if(this.state.published) {

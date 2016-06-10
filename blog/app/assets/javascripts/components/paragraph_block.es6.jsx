@@ -11,7 +11,7 @@ class ParagraphBlock extends React.Component {
   render () {
 
     const form = (
-      <p>
+      <p className="paragraph-block-form">
         <label>Paragraph</label>
         <textarea rows="5" columns="60"></textarea>
       </p>
