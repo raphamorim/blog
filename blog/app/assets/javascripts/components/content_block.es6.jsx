@@ -15,12 +15,21 @@ class ContentBlock extends React.Component {
     event.stopPropagation();
 
     const blockType = event.currentTarget.className;
-    const nBlocks = this.props.contentBlocks.size;
+    const nBlocks = this.props.contentBlocks.length;
 
     switch (blockType) {
       case "video":
-          this.props.contentBlocks.push(<VideoBlock key={nBlocks + 1}/>);
-          break;
+        this.props.contentBlocks.push(<VideoBlock key={nBlocks}/>);
+        break;
+      case "photo":
+        this.props.contentBlocks.push(<PhotoBlock key={nBlocks}/>);
+        break;
+      case "paragraph":
+        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks}/>);
+        break;
+      case "code":
+        this.props.contentBlocks.push(<CodeBlock key={nBlocks}/>);
+        break;
       default:
           console.log("Unknown block type");
     }
