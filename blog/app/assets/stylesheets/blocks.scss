@@ -63,14 +63,31 @@
                 width: 20%;
             }
 
+            input {
+                font-size: small;
+            }
+
         }
 
         .code-block-form {
+            height: 200px;
+            padding-bottom: 5%;
 
+            textarea {
+                border: 2px solid gray;
+                border-radius: 2px;
+                font-family: monospace;
+                font-size: small;
+                letter-spacing: 2px;
+            }
         }
 
         .paragraph-block-form {
 
+            textarea {
+                height: 100px;
+                font-size: medium;
+            }
         }
     }
 }
