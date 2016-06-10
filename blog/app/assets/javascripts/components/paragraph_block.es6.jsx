@@ -12,6 +12,7 @@ class ParagraphBlock extends React.Component {
 
     const form = (
       <p className="paragraph-block-form">
+        <BlockRemove class="paragraph-block-remove" />
         <label>Paragraph</label>
         <textarea rows="5" columns="60"></textarea>
       </p>

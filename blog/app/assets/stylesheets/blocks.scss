@@ -88,6 +88,19 @@
                 height: 100px;
                 font-size: medium;
             }
+
+            .paragraph-block-remove {
+                float: right;
+                right: 20%;
+                position: relative;
+            }
+        }
+
+        .block-remove {
+            color: gray;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: small;
         }
     }
 }
