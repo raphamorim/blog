@@ -10,7 +10,7 @@ class PhotoBlock extends React.Component {
 
   render () {
     const form = (
-      <p>
+      <p className="photo-block-form">
         <label>Add photo</label>
         <input type="file" accept="image/*" />
       </p>
