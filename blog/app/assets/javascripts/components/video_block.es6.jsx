@@ -10,7 +10,7 @@ class VideoBlock extends React.Component {
 
   render () {
     const form = (
-        <p>
+        <p className="video-block-form">
             <label>Video url</label>
             <input type="text" />
         </p>

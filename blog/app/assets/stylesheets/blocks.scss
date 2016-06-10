@@ -54,7 +54,7 @@
 
     .ContentBlockList {
 
-        .photo-block-form {
+        .photo-block-form, .video-block-form {
 
             display: inline-flex;
             width: 60%;
@@ -62,10 +62,6 @@
             label {
                 width: 20%;
             }
-
-        }
-
-        .video-block-form {
 
         }
 
