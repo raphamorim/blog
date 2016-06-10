@@ -10,7 +10,7 @@ class ContentBlockList extends React.Component {
 
       switch (component.type.name) {
         case "VideoBlock":
-          return <VideoBlock />
+          return component
           break;
         default:
           console.log("Component not found");
