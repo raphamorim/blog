@@ -67,6 +67,11 @@
                 font-size: small;
             }
 
+            .photo-block-remove, .video-block-remove {
+                width: 20%;
+                text-align: right;
+            }
+
         }
 
         .code-block-form {
@@ -79,6 +84,14 @@
                 font-family: monospace;
                 font-size: small;
                 letter-spacing: 2px;
+            }
+
+            .code-block-remove {
+                float: right;
+                width: 61%;
+                left: 10%;
+                position: relative;
+                top: 8%;
             }
         }
 

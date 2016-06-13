@@ -11,9 +11,9 @@ class PhotoBlock extends React.Component {
   render () {
     const form = (
       <p className="photo-block-form">
-        <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
         <label>Add photo</label>
         <input type="file" accept="image/*" />
+        <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
       </p>
     );
 

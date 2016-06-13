@@ -11,9 +11,9 @@ class VideoBlock extends React.Component {
   render () {
     const form = (
         <p className="video-block-form">
-            <BlockRemove class="video-block-remove" clickHandler={this.props.removeCallback}/>
             <label>Video url</label>
             <input type="text" />
+            <BlockRemove class="video-block-remove" clickHandler={this.props.removeCallback}/>
         </p>
     );
 
