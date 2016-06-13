@@ -11,6 +11,7 @@ class CodeBlock extends React.Component {
   render () {
     const form = (
       <p className="code-block-form">
+        <BlockRemove class="code-block-remove" clickHandler={this.props.removeCallback}/>
         <label>Source Code</label>
         <textarea rows="15" cols="80"></textarea>
       </p>
