@@ -9,6 +9,11 @@ class ContentBlock extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  deleteBlock (index) {
+      this.props.contentBlocks.pop(index);
+      this.forceUpdate();
+  }
+
   handleClick (event) {
 
     event.preventDefault();
@@ -19,16 +24,16 @@ class ContentBlock extends React.Component {
 
     switch (blockType) {
       case "video":
-        this.props.contentBlocks.push(<VideoBlock key={nBlocks}/>);
+        this.props.contentBlocks.push(<VideoBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
         break;
       case "photo":
-        this.props.contentBlocks.push(<PhotoBlock key={nBlocks}/>);
+        this.props.contentBlocks.push(<PhotoBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
         break;
       case "paragraph":
-        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks}/>);
+        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
         break;
       case "code":
-        this.props.contentBlocks.push(<CodeBlock key={nBlocks}/>);
+        this.props.contentBlocks.push(<CodeBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
         break;
       default:
           console.log("Unknown block type");
