@@ -1,46 +1,58 @@
 class ParagraphBlock extends React.Component {
 
   constructor () {
-      super();
+    super();
 
-      this.styles = {
-        NONE: 0,
-        BOLD: 1,
-        ITALIC: 2
-      }
+    this.styles = {
+      NONE: 0,
+      BOLD: 1,
+      ITALIC: 2
+    }
 
-      this.state = {
-        visible: false,
-        published: false,
-        ctrlPressed: false,
-        textStyle: this.styles.NONE,
-        value: ""
-      }
+    this.state = {
+      visible: false,
+      published: false,
+      ctrlPressed: false,
 
-      this.CTRL = 17;
-      this.B = 66;
-      this.I = 73;
+      textStyle: this.styles.NONE,
+      value: ""
+    }
 
-      this.boldTags = {
-        OPEN: "<b>",
-        CLOSE: "</b>"
-      }
+    /* Key Codes */
+    this.CTRL = 17;
+    this.B = 66;
+    this.I = 73;
 
-      this.italicTags = {
-        OPEN: "<i>",
-        CLOSE: "</i>"
-      }
-  }
+    /* Tag bold symbols */
+    this.boldTags = {
+      OPEN: "<b>",
+      CLOSE: "</b>"
+    }
 
-  handleKeyDown (event) {
-
-    const key = event.keyCode;
-    if(key == this.CTRL) {
-        this.state.ctrlPressed = true;
-        console.log("ctrl pressed");
+    /* Tag italic symbols */
+    this.italicTags = {
+      OPEN: "<i>",
+      CLOSE: "</i>"
     }
   }
 
+  /**
+   * Set the state for CTRL key pressed
+   */
+  handleKeyDown (event) {
+
+    const key = event.keyCode;
+
+    if(key == this.CTRL) {
+      this.state.ctrlPressed = true;
+    }
+  }
+
+  /**
+   * Handle B or I keys pressed. The selection start and end are also read.
+   * For each key, bold or italic are used. If the key is CTRL the state is
+   * updated.
+   */
   handleKeyUp (event) {
 
     const key = event.keyCode;
@@ -48,51 +60,92 @@ class ParagraphBlock extends React.Component {
     const end = event.target.selectionEnd;
 
     if(key == this.B && this.state.ctrlPressed) {
-
       this.setStyle(start, end, event, this.boldTags);
-    } else if(key == this.I && this.state.ctrlPressed) {
 
+    } else if(key == this.I && this.state.ctrlPressed) {
       this.setStyle(start, end, event, this.italicTags);
+
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
   }
 
-  setStyle (start, end, event, currentTag) {
+  /**
+   * Verifies the current style and sets new one
+   */
+  checkStyle (data, tagType) {
 
-    let tag = currentTag.OPEN;
-    let newStyle = this.styles.BOLD;
-    let newValue = this.state.value;
-    let length = 3;
+    const current = this.state.textStyle;
 
-    if(this.state.textStyle == this.styles.BOLD) { // TODO: use italic too
-      tag = currentTag.CLOSE;
-      newStyle = this.styles.NONE;
-      length = 4;
+    if(current == this.styles.BOLD || current == this.styles.ITALIC) {
+      data.tag = tagType.CLOSE;
+      data.newStyle = this.styles.NONE;
+      data.length = 4;
     }
+  }
+
+  /**
+   * Open or close tags at cursor place
+   */
+  openOrCloseTag(data, start, end) {
+
+    /* Appends tag on text */
+    data.newValue += data.tag;
+
+    /* Inserts tag in the middle of a text */
+    if(end < this.state.value.length) {
+
+      const before = this.state.value.substring(0, start);
+      const after = this.state.value.substring(end);
+
+      data.newValue = before + data.tag + after;
+      data.length = data.tag.length;
+    }
+  }
+
+  /**
+   * Wraps selected text with the tag type (bold or italic)
+   */
+  wrapSelectionWithTag (data, start, end, tagType) {
+
+    const before = this.state.value.substring(0, start) + data.tag;
+    const current = this.state.value.substring(start, end);
+    let after = this.state.value.substring(end) + tagType.CLOSE;
+
+    if(end < this.state.value.length)
+      data.after = tagType.CLOSE + this.state.value.substring(end);
+
+    data.newValue = before + current + after;
+    data.newStyle = this.styles.NONE;
+  }
+
+  /**
+   * Sets the style of the current selection or open/close bold or italic tags
+   */
+  setStyle (start, end, event, tagType) {
+
+    let data = {
+      tag: tagType.OPEN,
+      newStyle: (tagType==this.boldTags)? this.styles.BOLD: this.styles.ITALIC,
+      newValue: this.state.value,
+      length: 3,
+    };
+
+    this.checkStyle(data, tagType);
 
     if(start == end) {
-      newValue += tag;
-      if(end < this.state.value.length) {
-        newValue = this.state.value.substring(0, start) + tag + this.state.value.substring(end);
-        length = tag.length;
-      }
+      this.openOrCloseTag(data, start, end);
+
     } else {
-      const before = this.state.value.substring(0, start) + tag;
-      const current = this.state.value.substring(start, end);
-      let after = this.state.value.substring(end) + currentTag.CLOSE;
-      if(end < this.state.value.length)
-        after = currentTag.CLOSE + this.state.value.substring(end);
-      newValue = before + current + after;
-      newStyle = this.styles.NONE;
+      this.wrapSelectionWithTag(data, start, end, tagType);
     }
 
     this.setState({
-      value: newValue,
-      textStyle: newStyle
+      value: data.newValue,
+      textStyle: data.newStyle
     });
 
-    event.target.selectionEnd += length;
+    event.target.selectionEnd += data.length;
     event.preventDefault();
   }
 
@@ -117,7 +170,7 @@ class ParagraphBlock extends React.Component {
     );
 
     const paragraph = (
-      <p >{this.props.text}</p>
+      <p>{this.props.text}</p>
     );
 
     if(this.state.published) {
