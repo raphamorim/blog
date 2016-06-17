@@ -35,7 +35,7 @@ class VideoBlock extends React.Component {
                             + this.youtube.IMG_QUALITY;
       image = (
         <figure className="video-thumb">
-        <img src={videoThumbURL}/>
+            <img src={videoThumbURL}/>
         </figure>
       );
     }
