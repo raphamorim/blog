@@ -7,3 +7,4 @@ rails generate react:component ContentBlock content_type:array --es6
 rails generate migration AddBlocksToArticle blocks:json
 rails destroy model CodeBlock
 rails generate migration DropParagraphBlocks
+rake db:create RAILS_ENV=development
