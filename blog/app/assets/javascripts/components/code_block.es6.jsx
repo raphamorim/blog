@@ -40,7 +40,8 @@ class CodeBlock extends React.Component {
                   cols="80"
                   onKeyDown={this.indent.bind(this)}
                   onChange={this.change.bind(this)}
-                  value={this.state.value}>
+                  value={this.state.value}
+                  name="article[blocks][code]">
         </textarea>
       </p>
     );

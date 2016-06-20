@@ -164,7 +164,8 @@ class ParagraphBlock extends React.Component {
                   onKeyDown={this.handleKeyDown.bind(this)}
                   onKeyUp={this.handleKeyUp.bind(this)}
                   onChange={this.change.bind(this)}
-                  value={this.state.value}>
+                  value={this.state.value}
+                  name="article[blocks][paragraph]">
         </textarea>
       </p>
     );
