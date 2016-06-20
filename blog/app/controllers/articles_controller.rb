@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
       logger.debug "NURSE: #{params}"
       params[:blocks] = params[:blocks].to_json
       params.require(:article).permit(
-        :title, :subtitle, :abstract, :text, :all_tags, :blocks
+        :title, :subtitle, :abstract, :text, :all_tags, blocks: [:paragraph, :video, :photo, :code]
       )
     end
 end
