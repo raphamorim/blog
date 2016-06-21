@@ -6,7 +6,12 @@ class ContentBlock extends React.Component {
 
   constructor (props) {
 
-    super(props.props);
+    super(props);
+
+    this.state = {
+      published: false
+    };
+
     this.handleClick = this.handleClick.bind(this);
 
     if(Object.keys(this.props.blocks).length > 0){
@@ -17,11 +22,13 @@ class ContentBlock extends React.Component {
   createComponents () {
 
     let nBlocks = this.props.contentBlocks.length;
-    for(block in this.props.blocks) {
+    for (block in this.props.blocks) {
 
-      this.addBlock(block, nBlocks, this.props.blocks[block]);
+      this.addBlock(block, nBlocks++, this.props.blocks[block]);
     }
-    this.setState({});
+    console.log(this.state);
+    this.state.published = true;
+    console.log(this.state);
   }
 
   addBlock(blockType, nBlocks, value) {
@@ -34,7 +41,7 @@ class ContentBlock extends React.Component {
         this.props.contentBlocks.push(<PhotoBlock key={nBlocks} />);
         break;
       case "paragraph":
-        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} />);
+        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} text={value}/>);
         break;
       case "code":
         this.props.contentBlocks.push(<CodeBlock key={nBlocks} />);
@@ -62,18 +69,22 @@ class ContentBlock extends React.Component {
   }
 
   render () {
-    debugger;
+
+    const listBlocks = (
+      <div className="article-content-type" >
+        <ul>
+          <li className="video" onClick={this.handleClick}><a href="#"></a></li>
+          <li className="photo" onClick={this.handleClick}><a href="#"></a></li>
+          <li className="code" onClick={this.handleClick}><a href="#"></a></li>
+          <li className="paragraph" onClick={this.handleClick}><a href="#"></a></li>
+        </ul>
+      </div>
+    );
+
     return (
       <section className="content-blocks">
         <ContentBlockList blocks={this.props.contentBlocks} />
-        <div className="article-content-type" >
-          <ul>
-            <li className="video" onClick={this.handleClick}><a href="#"></a></li>
-            <li className="photo" onClick={this.handleClick}><a href="#"></a></li>
-            <li className="code" onClick={this.handleClick}><a href="#"></a></li>
-            <li className="paragraph" onClick={this.handleClick}><a href="#"></a></li>
-          </ul>
-        </div>
+        {this.state.published ? null : listBlocks}
       </section>
     );
   }
