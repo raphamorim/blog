@@ -26,16 +26,14 @@ class ContentBlock extends React.Component {
 
       this.addBlock(block, nBlocks++, this.props.blocks[block]);
     }
-    console.log(this.state);
     this.state.published = true;
-    console.log(this.state);
   }
 
   addBlock(blockType, nBlocks, value) {
 
     switch (blockType) {
       case "video":
-        this.props.contentBlocks.push(<VideoBlock key={nBlocks} />);
+        this.props.contentBlocks.push(<VideoBlock key={nBlocks} url={value}/>);
         break;
       case "photo":
         this.props.contentBlocks.push(<PhotoBlock key={nBlocks} />);
