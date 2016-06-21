@@ -1,12 +1,47 @@
 class ContentBlock extends React.Component {
 
   propTypes: {
-    contentBlocks: React.PropTypes.array
+    contentBlocks: React.PropTypes.array,
   }
 
-  constructor () {
-    super();
+  constructor (props) {
+
+    super(props.props);
     this.handleClick = this.handleClick.bind(this);
+
+    if(Object.keys(this.props.blocks).length > 0){
+        this.createComponents();
+    }
+  }
+
+  createComponents () {
+
+    let nBlocks = this.props.contentBlocks.length;
+    for(block in this.props.blocks) {
+
+      this.addBlock(block, nBlocks, this.props.blocks[block]);
+    }
+    this.setState({});
+  }
+
+  addBlock(blockType, nBlocks, value) {
+
+    switch (blockType) {
+      case "video":
+        this.props.contentBlocks.push(<VideoBlock key={nBlocks} />);
+        break;
+      case "photo":
+        this.props.contentBlocks.push(<PhotoBlock key={nBlocks} />);
+        break;
+      case "paragraph":
+        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} />);
+        break;
+      case "code":
+        this.props.contentBlocks.push(<CodeBlock key={nBlocks} />);
+        break;
+      default:
+          console.log("Unknown block type");
+    }
   }
 
   deleteBlock (index) {
@@ -22,26 +57,12 @@ class ContentBlock extends React.Component {
     const blockType = event.currentTarget.className;
     const nBlocks = this.props.contentBlocks.length;
 
-    switch (blockType) {
-      case "video":
-        this.props.contentBlocks.push(<VideoBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
-        break;
-      case "photo":
-        this.props.contentBlocks.push(<PhotoBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
-        break;
-      case "paragraph":
-        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
-        break;
-      case "code":
-        this.props.contentBlocks.push(<CodeBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>);
-        break;
-      default:
-          console.log("Unknown block type");
-    }
+    this.addBlock(blockType, nBlocks);
     this.setState({});
   }
 
   render () {
+    debugger;
     return (
       <section className="content-blocks">
         <ContentBlockList blocks={this.props.contentBlocks} />
@@ -57,7 +78,3 @@ class ContentBlock extends React.Component {
     );
   }
 }
-
-ContentBlock.propTypes = {
-  contentType: React.PropTypes.array
-};
