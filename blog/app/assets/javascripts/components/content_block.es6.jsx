@@ -14,7 +14,7 @@ class ContentBlock extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
 
-    if(Object.keys(this.props.blocks).length > 0){
+    if(this.props.blocks && this.props.blocks.length > 0){
         this.createComponents();
     }
   }
@@ -22,9 +22,10 @@ class ContentBlock extends React.Component {
   createComponents () {
 
     let nBlocks = this.props.contentBlocks.length;
-    for (block in this.props.blocks) {
+    for (let i=0; i < this.props.blocks.length; i++) {
 
-      this.addBlock(block, nBlocks++, this.props.blocks[block]);
+      const key = Object.keys(this.props.blocks[i])[0];
+      this.addBlock(key, nBlocks++, this.props.blocks[i][key]);
     }
     this.state.published = true;
   }
