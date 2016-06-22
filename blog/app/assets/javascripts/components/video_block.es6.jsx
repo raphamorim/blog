@@ -1,12 +1,11 @@
 class VideoBlock extends React.Component {
 
-  constructor () {
-      super();
+  constructor (props) {
+      super(props);
       this.state = {
-        visible: false,
         published: false,
         value: "",
-        videoID: undefined,
+        videoID: null,
       }
 
       this.youtube = {
@@ -14,17 +13,31 @@ class VideoBlock extends React.Component {
         IMG_QUALITY: "/0.jpg",
         URL_PATTERN: /v=\w{11}/,
         ID_LENGTH: 11,
+        YOUTUBE_EMBED_URL: "http://www.youtube.com/embed/",
       }
+
+      if(typeof this.props.url == "string" && this.props.url.length > 0) {
+
+        const videoID = this.getVideoID(this.props.url);
+
+        this.state.value = this.props.url;
+        this.state.videoID = videoID;
+        this.state.published = true;
+      }
+  }
+
+  getVideoID (url) {
+
+    if(this.youtube.URL_PATTERN.test(url)) {
+        return url.split("v=")[1].substring(0, this.youtube.ID_LENGTH);
+    }
+    return null;
   }
 
   handleKeyUp (event) {
 
     const value = event.target.value;
-    let videoID = undefined;
-
-    if(this.youtube.URL_PATTERN.test(value)) {
-        videoID = value.split("v=")[1].substring(0, this.youtube.ID_LENGTH);
-    }
+    const videoID = this.getVideoID(value);
     this.setState({value: value, videoID: videoID});
   }
 
@@ -56,9 +69,9 @@ class VideoBlock extends React.Component {
 
     const video = (
         <div className="video-block">
-            <video width="640" height="480" controls>
-                <source src="{this.props.url}" ></source>
-            </video>
+            <iframe id="ytplayer" type="text/html" width="640" height="480"
+              src={this.youtube.YOUTUBE_EMBED_URL + this.state.videoID}
+              frameborder="0" />
         </div>
     );
 

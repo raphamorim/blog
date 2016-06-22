@@ -1,7 +1,11 @@
 class ParagraphBlock extends React.Component {
 
-  constructor () {
-    super();
+  propTypes: {
+    text: React.PropTypes.string
+  }
+
+  constructor (props) {
+    super(props);
 
     this.styles = {
       NONE: 0,
@@ -9,9 +13,13 @@ class ParagraphBlock extends React.Component {
       ITALIC: 2
     }
 
+    let published = false;
+    if (typeof this.props.text == "string" && this.props.text.length > 0) {
+      published = true;
+    }
+
     this.state = {
-      visible: false,
-      published: false,
+      published: published,
       ctrlPressed: false,
 
       textStyle: this.styles.NONE,
@@ -171,7 +179,7 @@ class ParagraphBlock extends React.Component {
     );
 
     const paragraph = (
-      <p>{this.props.text}</p>
+      <p className="published">{this.props.text}</p>
     );
 
     if(this.state.published) {
@@ -181,7 +189,3 @@ class ParagraphBlock extends React.Component {
     }
   }
 }
-
-ParagraphBlock.propTypes = {
-  text: React.PropTypes.string
-};
