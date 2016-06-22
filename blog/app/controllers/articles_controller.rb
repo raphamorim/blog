@@ -51,10 +51,18 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      logger.debug "NURSE: #{params}"
-      params[:blocks] = params[:blocks].to_json
+      params[:article][:blocks] = normalize_params
+
       params.require(:article).permit(
         :title, :subtitle, :abstract, :text, :all_tags, blocks: [:paragraph, :video, :photo, :code]
       )
+    end
+
+    def normalize_params()
+      ar = []
+      params[:article][:blocks].each do |key, value|
+        ar << Hash[key, value]
+      end
+      ar
     end
 end
