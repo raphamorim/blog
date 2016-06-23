@@ -9,45 +9,46 @@ class ContentBlock extends React.Component {
     super(props);
 
     this.state = {
-      published: false
+      published: this.props.published || false
     };
 
     this.handleClick = this.handleClick.bind(this);
 
-    if(this.props.blocks && this.props.blocks.length > 0){
-        this.createComponents();
+    if(this.props.contentBlocks.length > 0) {
+      this.createComponents();
     }
   }
 
   createComponents () {
 
-    let nBlocks = this.props.contentBlocks.length;
-    for (let i=0; i < this.props.blocks.length; i++) {
+    for (let i=0; i < this.props.contentBlocks.length; i++) {
 
-      const key = Object.keys(this.props.blocks[i])[0];
-      this.addBlock(key, nBlocks++, this.props.blocks[i][key]);
+      const block = this.props.contentBlocks[i];
+      const key = Object.keys(blocks)[0];
+      this.addBlock(key, i, this.props.contentBlocks[i][key]);
     }
-    this.state.published = true;
   }
 
   addBlock(blockType, nBlocks, value) {
 
+    let component = undefined;
     switch (blockType) {
       case "video":
-        this.props.contentBlocks.push(<VideoBlock key={nBlocks} url={value}/>);
+        component = <VideoBlock key={nBlocks} url={value} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>;
         break;
       case "photo":
-        this.props.contentBlocks.push(<PhotoBlock key={nBlocks} />);
+        component = <PhotoBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>;
         break;
       case "paragraph":
-        this.props.contentBlocks.push(<ParagraphBlock key={nBlocks} text={value}/>);
+        component = <ParagraphBlock key={nBlocks} text={value} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>;
         break;
       case "code":
-        this.props.contentBlocks.push(<CodeBlock key={nBlocks} />);
+        component = <CodeBlock key={nBlocks} removeCallback={this.deleteBlock.bind(this, nBlocks)}/>;
         break;
       default:
           console.log("Unknown block type");
     }
+    this.props.contentBlocks.push(component);
   }
 
   deleteBlock (index) {
