@@ -6,7 +6,8 @@
             <time>Atualizado em <%= @article.updated_at.strftime "%Y/%m/%d %H:%M" %></time>
         </header>
 
-        <%= react_component('ContentBlock', contentBlocks: @article.blocks, published: true) %>
+        <%= react_component('ContentBlock', {contentBlocks: @article.blocks, published: true}) %>
+        <%= debug @article.blocks %>
 
         </hr>
 
