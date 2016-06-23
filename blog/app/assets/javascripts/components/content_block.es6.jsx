@@ -9,6 +9,7 @@ class ContentBlock extends React.Component {
     super(props);
 
     this.state = {
+      components: [],
       published: this.props.published || false
     };
 
@@ -24,7 +25,7 @@ class ContentBlock extends React.Component {
     for (let i=0; i < this.props.contentBlocks.length; i++) {
 
       const block = this.props.contentBlocks[i];
-      const key = Object.keys(blocks)[0];
+      const key = Object.keys(block)[0];
       this.addBlock(key, i, this.props.contentBlocks[i][key]);
     }
   }
@@ -48,11 +49,11 @@ class ContentBlock extends React.Component {
       default:
           console.log("Unknown block type");
     }
-    this.props.contentBlocks.push(component);
+    this.state.components.push(component);
   }
 
   deleteBlock (index) {
-      this.props.contentBlocks.pop(index);
+      this.state.components.pop(index);
       this.forceUpdate();
   }
 
@@ -62,7 +63,7 @@ class ContentBlock extends React.Component {
     event.stopPropagation();
 
     const blockType = event.currentTarget.className;
-    const nBlocks = this.props.contentBlocks.length;
+    const nBlocks = this.state.components.length;
 
     this.addBlock(blockType, nBlocks);
     this.setState({});
@@ -83,7 +84,7 @@ class ContentBlock extends React.Component {
 
     return (
       <section className="content-blocks">
-        <ContentBlockList blocks={this.props.contentBlocks} />
+        <ContentBlockList blocks={this.state.components} />
         {this.state.published ? null : listBlocks}
       </section>
     );
