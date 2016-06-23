@@ -60,8 +60,10 @@ class ArticlesController < ApplicationController
 
     def normalize_params()
       ar = []
-      params[:article][:blocks].each do |key, value|
-        ar << Hash[key, value]
+      if params[:article][:blocks]
+        params[:article][:blocks].each do |key, value|
+          ar << Hash[key, value]
+        end
       end
       ar
     end
