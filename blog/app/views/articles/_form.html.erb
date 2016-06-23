@@ -38,7 +38,7 @@
       </p>
 
       <p>
-        <%= react_component('ContentBlock', contentBlocks: []) %>
+        <%= react_component('ContentBlock', contentBlocks: @article.blocks, published: false) %>
       </p>
 
       <p class="article-tags-p">
