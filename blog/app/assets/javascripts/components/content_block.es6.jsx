@@ -6,6 +6,7 @@ class ContentBlock extends React.Component {
 
   constructor (props) {
 
+    console.log(props);
     super(props);
 
     this.state = {
@@ -35,16 +36,32 @@ class ContentBlock extends React.Component {
     let component = undefined;
     switch (blockType) {
       case "video":
-        component = <VideoBlock key={index} url={value} removeCallback={this.deleteBlock.bind(this, index)}/>;
+        component = <VideoBlock
+                      key={index}
+                      url={value}
+                      removeCallback={this.deleteBlock.bind(this, index)}
+                      published={this.state.published} />;
         break;
       case "photo":
-        component = <PhotoBlock key={index} removeCallback={this.deleteBlock.bind(this, index)}/>;
+        component = <PhotoBlock
+                      key={index}
+                      removeCallback={this.deleteBlock.bind(this, index)}
+                      path={value}
+                      published={this.state.published} />;
         break;
       case "paragraph":
-        component = <ParagraphBlock key={index} text={value} removeCallback={this.deleteBlock.bind(this, index)}/>;
+        component = <ParagraphBlock
+                      key={index}
+                      text={value}
+                      removeCallback={this.deleteBlock.bind(this, index)}
+                      published={this.state.published} />;
         break;
       case "code":
-        component = <CodeBlock key={index} removeCallback={this.deleteBlock.bind(this, index)}/>;
+        component = <CodeBlock
+                      key={index}
+                      removeCallback={this.deleteBlock.bind(this, index)}
+                      code={value}
+                      published={this.state.published} />;
         break;
       default:
           console.log("Unknown block type");
