@@ -1,14 +1,18 @@
 class CodeBlock extends React.Component {
 
-  constructor () {
-      super();
+  constructor (props) {
+      super(props);
       this.state = {
-        visible: false,
-        published: false,
+        published: this.props.published || false,
         value: ""
       }
 
       this.TAB = 9;
+
+      if (typeof this.props.code == "string" && this.props.code.length > 0) {
+
+        this.state.value = this.props.code;
+      }
   }
 
   indent (event) {
@@ -32,6 +36,7 @@ class CodeBlock extends React.Component {
   }
 
   render () {
+
     const form = (
       <p className="code-block-form">
         <BlockRemove class="code-block-remove" clickHandler={this.props.removeCallback}/>
@@ -47,7 +52,7 @@ class CodeBlock extends React.Component {
     );
 
     const source = (
-        <pre className="prettyprint linenums">{this.props.source}</pre>
+        <pre className="prettyprint linenums">{this.state.value}</pre>
     );
 
     if(this.state.published) {
