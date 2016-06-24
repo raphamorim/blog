@@ -2,8 +2,9 @@ class VideoBlock extends React.Component {
 
   constructor (props) {
       super(props);
+
       this.state = {
-        published: false,
+        published: this.props.published || false,
         value: "",
         videoID: null,
       }
@@ -22,7 +23,6 @@ class VideoBlock extends React.Component {
 
         this.state.value = this.props.url;
         this.state.videoID = videoID;
-        this.state.published = true;
       }
   }
 
