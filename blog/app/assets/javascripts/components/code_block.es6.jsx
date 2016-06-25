@@ -52,7 +52,11 @@ class CodeBlock extends React.Component {
     );
 
     const source = (
-        <pre className="prettyprint linenums">{this.state.value}</pre>
+      <pre>
+        <code>
+          {this.state.value}
+        </code>
+      </pre>
     );
 
     if(this.state.published) {
