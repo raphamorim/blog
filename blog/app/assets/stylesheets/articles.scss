@@ -217,21 +217,50 @@
             }
 
             time {
+                position: relative;
+                margin: 18%;
+                padding-top: 2%;
+                padding-bottom: 2%;
                 color: gray;
                 font-family: monospace;
                 font-size: small;
             }
         }
 
-        p {
-            color: #BBB;
-            position: relative;
-            width: 65%;
-            left: 18%;
-            text-align: justify;
-            font-family: sans-serif;
-            font-size: large;
-            letter-spacing: 1px;
+        .content-blocks {
+            padding-top: 2%;
+            padding-bottom: 2%;
+
+            p {
+                color: #BBB;
+                position: relative;
+                width: 65%;
+                left: 18%;
+                text-align: justify;
+                font-family: sans-serif;
+                font-size: large;
+                letter-spacing: 1px;
+            }
+
+            pre {
+                width: 60%;
+                position: relative;
+                margin: auto;
+                border: 1px solid blue;
+                border-radius: 3px;
+            }
+
+            .video-block {
+                width: 60%;
+                position: relative;
+                margin: auto;
+                text-align: center;
+                padding-top: 2%;
+            }
+
+            #ytplayer {
+                border: 1px;
+            }
         }
     }
 }
