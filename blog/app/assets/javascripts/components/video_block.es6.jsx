@@ -69,7 +69,7 @@ class VideoBlock extends React.Component {
 
     const video = (
         <div className="video-block">
-            <iframe id="ytplayer" type="text/html" width="640" height="480"
+            <iframe id="ytplayer" type="text/html" width="800" height="600"
               src={this.youtube.YOUTUBE_EMBED_URL + this.state.videoID}
               frameborder="0" />
         </div>
