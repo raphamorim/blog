@@ -1,4 +1,4 @@
-<%= form_for @article do |f| %>
+<%= form_for @article, :html => { :multipart => true } do |f| %>
 
 
   <% if @article.errors.any? %>
@@ -37,9 +37,7 @@
         <%= f.text_area :abstract %>
       </p>
 
-      <p>
-        <%= react_component('ContentBlock', contentBlocks: @article.blocks, published: false) %>
-      </p>
+      <%= react_component('ContentBlock', contentBlocks: @article.blocks, published: false) %>
 
       <p class="article-tags-p">
         <%= f.label "Tags" %><br>
