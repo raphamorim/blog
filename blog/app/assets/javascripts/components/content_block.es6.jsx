@@ -16,7 +16,7 @@ class ContentBlock extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
 
-    if(this.props.contentBlocks.length > 0) {
+    if(this.props.contentBlocks && this.props.contentBlocks.length > 0) {
       this.createComponents();
     }
   }
