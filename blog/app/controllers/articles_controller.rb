@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
+      upload_photo
       params[:article][:blocks] = normalize_params
 
       params.require(:article).permit(
@@ -66,5 +67,20 @@ class ArticlesController < ApplicationController
         end
       end
       ar
+    end
+
+    def upload_photo()
+      if params[:article][:blocks][:photo]
+
+        uploaded_io = params[:article][:blocks][:photo]
+        name = uploaded_io.original_filename
+        path = Rails.root.join('public', 'uploads', name)
+
+        File.open(path, 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+
+        params[:article][:blocks][:photo] = path
+      end
     end
 end
