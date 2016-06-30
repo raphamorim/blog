@@ -50,3 +50,8 @@ gem 'react-rails'
 
 # Postgres
 gem 'pg'
+
+# Debugging
+gem 'pry'
+gem 'pry-rails'
+gem 'pry-byebug'
