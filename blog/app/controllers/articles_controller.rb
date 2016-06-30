@@ -51,6 +51,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
+      logger.debug "#{params[:article][:blocks]}"
       upload_photo
       params[:article][:blocks] = normalize_params
 
@@ -72,15 +73,17 @@ class ArticlesController < ApplicationController
     def upload_photo()
       if params[:article][:blocks][:photo]
 
+        path_prefix = "uploads"
         uploaded_io = params[:article][:blocks][:photo]
         name = uploaded_io.original_filename
-        path = Rails.root.join('public', 'uploads', name)
+        digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
+        path = Rails.root.join('public', path_prefix, digest)
 
         File.open(path, 'wb') do |file|
           file.write(uploaded_io.read)
         end
 
-        params[:article][:blocks][:photo] = path
+        params[:article][:blocks][:photo] = "/" + path_prefix + "/" + digest
       end
     end
 end
