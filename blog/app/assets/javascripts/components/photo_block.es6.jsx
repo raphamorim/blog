@@ -1,13 +1,18 @@
 class PhotoBlock extends React.Component {
 
-  constructor () {
-      super();
+  constructor (props) {
+      super(props);
+
       this.state = {
         visible: false,
-        published: false,
+        published: this.props.published || false,
 
         file: undefined,
         imagePreviewURL: undefined,
+      }
+
+      if (this.props.path && typeof this.props.path == "string") {
+          this.state.imagePreviewURL = this.props.path;
       }
   }
 
@@ -51,7 +56,10 @@ class PhotoBlock extends React.Component {
     );
 
     const photo = (
-      <p>{this.props.text}</p>
+        <picture>
+          <source srcset={this.state.imagePreviewURL} />
+          <img width="800px" height="600px" src={this.state.imagePreviewURL} />
+        </picture>
     );
 
     if(this.state.published) {
