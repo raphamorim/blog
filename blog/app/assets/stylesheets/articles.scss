@@ -235,7 +235,7 @@
                 color: #BBB;
                 position: relative;
                 width: 65%;
-                left: 18%;
+                left: 20%;
                 text-align: justify;
                 font-family: sans-serif;
                 font-size: large;
@@ -256,6 +256,11 @@
                 margin: auto;
                 text-align: center;
                 padding-top: 2%;
+            }
+
+            .photo-block-show img {
+                position: relative;
+                left: 20%;
             }
 
             #ytplayer {
