@@ -56,9 +56,9 @@ class PhotoBlock extends React.Component {
     );
 
     const photo = (
-        <picture>
+        <picture className="photo-block-show" >
           <source srcset={this.state.imagePreviewURL} />
-          <img width="800px" height="600px" src={this.state.imagePreviewURL} />
+          <img width="60%" src={this.state.imagePreviewURL} />
         </picture>
     );
 
