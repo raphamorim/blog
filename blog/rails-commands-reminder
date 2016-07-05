@@ -8,3 +8,5 @@ rails generate migration AddBlocksToArticle blocks:json
 rails destroy model CodeBlock
 rails generate migration DropParagraphBlocks
 rake db:create RAILS_ENV=development
+rails generate controller users new create
+rails generate model user email:string password:string salt:string
