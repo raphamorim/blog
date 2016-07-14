@@ -1,28 +1,25 @@
 <header>
-
     <section class="auth">
-        <div class="login" >
-            <%= form_tag sessions_path do %>
-                <%= text_field_tag :email, params[:email], placeholder: "email" %>
-                <%= password_field_tag :password, "", placeholder: "password" %>
-                <%= submit_tag "Log in" %>
-            <% end %>
-        </div>
-        <div class="logout" >
-            <div id="user_nav">
-              <% if current_user %>
+        <% if current_user %>
+            <div class="logout" >
                 Logged in as <%= current_user.email %>
                 <%= link_to "Log out", logout_path %>
-              <% else %>
-                <%= link_to "login", login_path %>
-              <% end %>
             </div>
+        <% else %>
+            <div class="login" >
+                <%= form_tag sessions_path do %>
+                    <%= text_field_tag :email, params[:email], placeholder: "email" %>
+                    <%= password_field_tag :password, "", placeholder: "password" %>
+                    <%= submit_tag "Log in" %>
+                <% end %>
+            </div>
+        <% end %>
 
-            <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, :id => "flash_#{name}" %>
-            <% end %>
-        </div>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
     </section>
+
     <div class="logo">
         <pre>
          ______     __
