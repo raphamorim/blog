@@ -39,18 +39,23 @@
     </div>
 
     <section class="author">
-        <div >
-            <figure>
-            <%= image_tag "author.png",
-                size: "100",
-                alt: "Gustavo Pantuza" %>
-            </figure>
-            <span>Gustavo Pantuza</span>
+        <div class="author-info">
+            <div class="author-figure">
+                <figure>
+                    <%= image_tag "author.png",
+                        size: "100",
+                        alt: "Gustavo Pantuza" %>
+                </figure>
+                <span>Gustavo Pantuza</span>
+            </div>
+            <p>
+                Posts em português para fortalecer a comunidade brasileira
+                de Ciência da computação.
+            </p>
         </div>
 
         <div class="search">
             <%= form_tag("/search", method: "get") do %>
-              <%= label_tag(:q, "Search for:") %>
               <%= text_field_tag(:q) %>
               <%= submit_tag("Grep") %>
             <% end %>
