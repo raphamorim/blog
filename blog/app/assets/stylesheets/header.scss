@@ -27,26 +27,43 @@ header {
     }
 
     .author {
-        width: 50%;
+        width: 30%;
         float: right;
 
-        figure {
-            width: 100px;
-        }
+        .author-info {
 
-        span {
-            width: 100px;
-            padding-left: 6%;
-            position: relative;
-            bottom: 20px;
-             color: yellow;
-             font-family: monospace;
-             font-size: large;
+            display: inline-flex;
+
+            .author-figure {
+
+                width: 35%;
+
+                figure {
+                    width: 60%;
+                }
+
+                span {
+                    width: inherit;
+                    position: relative;
+                    bottom: 20px;
+                    color: yellow;
+                    font-family: monospace;
+                    font-size: smaller;
+                    padding-left: 18%;
+                }
+            }
+
+            p {
+                color: white;
+                font-size: small;
+                letter-spacing: 1px;
+                height: 90px;
+                margin-top: 13%;
+            }
         }
     }
 
     .search {
-        float: right;
         width: 100%;
 
         form {
@@ -54,14 +71,17 @@ header {
             text-align: right;
 
             input[type=text] {
-                width: 50%;
+                width: 80%;
             }
 
             input[type=submit] {
-                width: 15%;
+                width: 18%;
                 font-size: large;
                 font-family: monospace;
                 box-shadow: 0px 0px 16px rgba(0,255,0, .75);
+                border-radius: 4px;
+                border-top: 0px;
+                height: 25px;
             }
         }
     }
