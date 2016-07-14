@@ -1,13 +1,19 @@
 footer {
 
-    pre {
-        color: green;
-        letter-spacing: 2px;
-        right: 7%;
-        position: relative;
+    .location {
 
-        span {
-            color: red;
+        width: 60%;
+        float: left;
+
+        pre {
+            color: green;
+            letter-spacing: 2px;
+            right: 10%;
+            position: relative;
+
+            span {
+                color: red;
+            }
         }
     }
 
@@ -18,10 +24,27 @@ footer {
         color: #236;
     }
 
+    aside {
+        float: right;
+        width: 40%;
+
+        .site-links {
+            display: inline-flex;
+
+            ul {
+
+                li {
+                    width: 60%;
+                    display: inline-block;
+                }
+            }
+        }
+    }
     .spock p {
         font-family: monospace;
         color: green;
         letter-spacing: 1px;
         padding-top: 5%;
+        clear: both;
     }
 }
