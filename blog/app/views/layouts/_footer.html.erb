@@ -30,23 +30,37 @@
 
     <aside>
         <div class="site-links">
-            <ul>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-            </ul>
+            <section class="social" >
+                <header><h3>Social</h3></header>
+                <ul>
+                    <li><a target="_blank" href="https://github.com/pantuza">Github</a></li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/gustavo-pantuza-46089825">Linkedin</a></li>
+                    <li><a target="_blank" href="https://twitter.com/gpantuza">Twitter</a></li>
+                    <li><a target="_blank" href="https://www.youtube.com/channel/UCiTfOE7yw__hd00Gx3M-uWQ">Youtube</a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/pantuza">Facebook</a></li>
+                </ul>
+            </section>
 
-            <ul>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-            </ul>
+            <section class="blog" >
+                <header><h3>Conteúdo</h3></header>
+                <ul>
+                    <li><%= link_to 'Artigos', controller: 'articles' %></li>
+                    <li><%= link_to 'Tags', controller: 'articles' %></li>
+                    <li><%= link_to 'Projetos', root_path %></li>
+                    <li><%= link_to 'Rss', root_path %></li>
+                </ul>
+            </section>
 
-            <ul>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
-            </ul>
+            <section class="about" >
+                <header><h3>Sobre</h3></header>
+                <ul>
+                    <li><%= link_to 'Sobre', root_path %></li>
+                    <li><a href="#">Pesquisa</a></li>
+                    <li><a href="#">Palestras</a></li>
+                    <li><a href="#">Currículo</a></li>
+                    <li><a href="http://lattes.cnpq.br/4792588328328072">Lattes</a></li>
+                </ul>
+            </section>
         </div>
     </aside>
 
