@@ -31,11 +31,31 @@ footer {
         .site-links {
             display: inline-flex;
 
-            ul {
+            section {
 
-                li {
-                    width: 60%;
-                    display: inline-block;
+                position: relative;
+                width: 33%;
+
+                header {
+                    color: yellow;
+                    font-family: monospace;
+                    letter-spacing: 2px;
+                    text-align: center;
+                }
+
+                ul {
+
+                    li {
+                        width: 60%;
+                        display: inline-block;
+                        font-family: monospace;
+                        letter-spacing: 2px;
+                        vertical-align: 10px;
+
+                        a {
+                            color: cyan;
+                        }
+                    }
                 }
             }
         }
