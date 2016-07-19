@@ -10,3 +10,5 @@ rails generate migration DropParagraphBlocks
 rake db:create RAILS_ENV=development
 rails generate controller users new create
 rails generate model user email:string password:string salt:string
+rails generate task users encrypt_password
+rake users:encrypt_password
