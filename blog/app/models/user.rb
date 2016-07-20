@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  attr_accessor :password
   before_save :encrypt_password
 
   validates_confirmation_of :password
@@ -9,6 +8,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   def self.authenticate(email, password)
+
     user = find_by_email(email)
     if user && user.password == BCrypt::Engine.hash_secret(password, user.salt)
       user
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
