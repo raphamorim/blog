@@ -6,7 +6,9 @@
     <div class="action">
         <ul>
             <li>
-                <%= link_to 'New article', new_article_path %>
+                <% if current_user %>
+                    <%= link_to 'New article', new_article_path %>
+                <% end %>
             </li>
         </ul>
     </div>
