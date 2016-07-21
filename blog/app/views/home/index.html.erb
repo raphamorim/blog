@@ -1,2 +1,4 @@
 <%= link_to 'Lista de posts', controller: 'articles' %>
-<%= link_to 'New article', new_article_path %>
+<% if current_user %>
+    <%= link_to 'New article', new_article_path %>
+<% end %>
