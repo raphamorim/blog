@@ -4,6 +4,9 @@
         <section class="left">
             <%= link_to article_path(article) do %>
                 <figure>
+                    <% if current_user %>
+                      <%= react_component('ArticleCover') %>
+                    <% end %>
                     <img
                         src""
                         width="200"
