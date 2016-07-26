@@ -95,4 +95,26 @@ class ArticlesController < ApplicationController
         params[:article][:blocks][:photo] = "/" + path_prefix + "/" + digest
       end
     end
+
+    def upload_cover()
+
+      if params[:cover]
+        @article = Article.find_by_permalink(params[:id])
+
+        path_prefix = "uploads"
+        uploaded_io = params[:cover]
+        name = uploaded_io.original_filename
+        digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
+        path = Rails.root.join('public', path_prefix, digest)
+
+        File.open(path, 'wb') do |file|
+          file.write(uploaded_io.read)
+        end
+
+        @article.cover = "/" + path_prefix + "/" + digest
+        @article.save
+
+        redirect_to "index"
+      end
+    end
 end
