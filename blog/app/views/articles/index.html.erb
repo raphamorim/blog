@@ -1,12 +1,14 @@
 <section>
-    <header>
-        <h1>Artigos</h1>
+    <header class="articles-index">
+        <h1>Últimos artigos</h1>
     </header>
 
     <div class="action">
         <ul>
             <li>
-                <%= link_to 'New article', new_article_path %>
+                <% if current_user %>
+                    <%= link_to 'New article', new_article_path %>
+                <% end %>
             </li>
         </ul>
     </div>

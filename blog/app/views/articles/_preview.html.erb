@@ -27,15 +27,17 @@
             <% end %>
         </section>
 
-        <section class="bottom">
-            <ul>
-                <li> <%= link_to 'Edit', edit_article_path(article) %></li>
-                <li> <%= link_to 'Destroy', article_path(article),
-                      method: :delete,
-                      data: {
-                          confirm: 'Are you sure?' 
-                      } %></li>
-            </ul>
-        </section>
+        <% if current_user %>
+            <section class="bottom">
+                <ul>
+                    <li> <%= link_to 'Edit', edit_article_path(article) %></li>
+                    <li> <%= link_to 'Destroy', article_path(article),
+                          method: :delete,
+                          data: {
+                              confirm: 'Are you sure?' 
+                          } %></li>
+                </ul>
+            </section>
+        <% end %>
     </article>
 <% end %>

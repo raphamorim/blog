@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
 
   http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
+  before_action :require_login, only: [:edit, :update, :create, :new, :destroy]
+
   def index
     @articles = Article.all
   end
@@ -50,6 +52,13 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+    def require_login
+      if current_user == nil
+        redirect_to root_url
+      end
+    end
+
     def article_params
       logger.debug "#{params[:article][:blocks]}"
       upload_photo
