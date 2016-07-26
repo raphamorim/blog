@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705020018) do
+ActiveRecord::Schema.define(version: 20160726003005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160705020018) do
     t.text     "abstract"
     t.string   "subtitle"
     t.json     "blocks"
+    t.string   "cover"
   end
 
   add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true, using: :btree
