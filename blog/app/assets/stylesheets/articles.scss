@@ -35,6 +35,17 @@
             font-size: small;
             letter-spacing: 2px;
         }
+
+        input[type=file] {
+            width: 160px;
+            position: relative;
+            left: -5px;
+        }
+
+        input[type=submit] {
+            position: relative;
+            left: -5px;
+        }
     }
 
     .right {
