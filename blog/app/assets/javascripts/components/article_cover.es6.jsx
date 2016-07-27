@@ -9,11 +9,6 @@ class ArticleCover extends React.Component {
     }
   }
 
-  handleFileChoose(event) {
-
-      return false;
-  }
-
   handleClick (event) {
 
       this.setState({'edit': true})
@@ -25,13 +20,16 @@ class ArticleCover extends React.Component {
   render () {
 
     const form = (
-       <form method="POST" enctype="multipart/form-data" action="#">
+       <form method="POST"
+             encType="multipart/form-data"
+             acceptCharset="UTF-8"
+             action="/articles/cover">
+
            <label>Choose photo</label>
            <input type="hidden" name="id" value={this.props.permalink} />
            <input type="file"
               accept="image/*"
-              onChange={this.handleFileChoose.bind(this)}
-              name="cover"/>
+              name="cover" />
           <input type="submit" value="Save" />
        </form>
     )
