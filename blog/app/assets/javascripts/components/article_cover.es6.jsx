@@ -25,7 +25,6 @@ class ArticleCover extends React.Component {
              acceptCharset="UTF-8"
              action="/articles/cover">
 
-           <label>Choose photo</label>
            <input type="hidden" name="id" value={this.props.permalink} />
            <input type="file"
               accept="image/*"
