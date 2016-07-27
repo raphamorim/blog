@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # search route
   get '/search' => 'articles#search'
 
+  # cover upload
+  post 'articles/cover' => 'articles#upload_cover'
+
   # blog routes
   get 'home/index'
   get 'article/index'
