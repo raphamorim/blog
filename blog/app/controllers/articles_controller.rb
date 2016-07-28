@@ -83,7 +83,7 @@ class ArticlesController < ApplicationController
     def article_params
       logger.debug "#{params[:article][:blocks]}"
       upload_photo
-      params[:article][:blocks] = normalize_params
+      # params[:article][:blocks] = normalize_params
 
       params.require(:article).permit(
         :title, :subtitle, :abstract, :text, :cover, :all_tags, blocks: [:paragraph, :video, :photo, :code]
@@ -101,19 +101,22 @@ class ArticlesController < ApplicationController
     end
 
     def upload_photo()
-      if params[:article][:blocks][:photo]
+      params[:article][:blocks].each do |key, hash|
 
-        path_prefix = "uploads"
-        uploaded_io = params[:article][:blocks][:photo]
-        name = uploaded_io.original_filename
-        digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
-        path = Rails.root.join('public', path_prefix, digest)
+        if hash.key?(:photo)
 
-        File.open(path, 'wb') do |file|
-          file.write(uploaded_io.read)
+          path_prefix = "uploads"
+          uploaded_io = params[:article][:blocks][key][:photo]
+          name = uploaded_io.original_filename
+          digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
+          path = Rails.root.join('public', path_prefix, digest)
+
+          File.open(path, 'wb') do |file|
+            file.write(uploaded_io.read)
+          end
+
+          params[:article][:blocks][key][:photo] = "/" + path_prefix + "/" + digest
         end
-
-        params[:article][:blocks][:photo] = "/" + path_prefix + "/" + digest
       end
     end
 end
