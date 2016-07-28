@@ -17,18 +17,20 @@ class ContentBlock extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
 
-    if(this.props.contentBlocks && this.props.contentBlocks.length > 0) {
+    if(this.props.contentBlocks &&
+       Object.keys(this.props.contentBlocks).length > 0) {
       this.createComponents();
     }
   }
 
   createComponents () {
 
-    for (let i=0; i < this.props.contentBlocks.length; i++) {
+    const objectKeys = Object.keys(this.props.contentBlocks);
+    for (let i=0; i < objectKeys.length; i++) {
 
-      const block = this.props.contentBlocks[i];
+      const block = this.props.contentBlocks[ objectKeys[i] ];
       const key = Object.keys(block)[0];
-      this.addBlock(key, i, this.props.contentBlocks[i][key]);
+      this.addBlock(key, i, block[key]);
     }
   }
 
