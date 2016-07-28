@@ -49,7 +49,7 @@ class PhotoBlock extends React.Component {
         <input type="file"
                accept="image/*"
                onChange={this.handleFileChoose.bind(this)}
-               name="article[blocks][photo]"/>
+               name={"article[blocks][" + this.props.order + "][photo]"}/>
         <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
         {preview}
       </p>

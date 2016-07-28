@@ -60,7 +60,7 @@ class VideoBlock extends React.Component {
             <input type="text"
                    onChange={this.handleKeyUp.bind(this)}
                    value={this.state.value}
-                   name="article[blocks][video]"/>
+                   name={"article[blocks][" + this.props.order + "][video]"} />
             <BlockRemove class="video-block-remove" clickHandler={this.props.removeCallback}/>
           </section>
           {image}

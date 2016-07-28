@@ -11,7 +11,8 @@ class ContentBlock extends React.Component {
 
     this.state = {
       components: [],
-      published: this.props.published || false
+      published: this.props.published || false,
+      nextOrder: 0,  // Initialize blocks order on form
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -39,34 +40,40 @@ class ContentBlock extends React.Component {
         component = <VideoBlock
                       key={index}
                       url={value}
+                      order={this.state.nextOrder}
                       removeCallback={this.deleteBlock.bind(this, index)}
                       published={this.state.published} />;
         break;
       case "photo":
         component = <PhotoBlock
                       key={index}
-                      removeCallback={this.deleteBlock.bind(this, index)}
                       path={value}
+                      order={this.state.nextOrder}
+                      removeCallback={this.deleteBlock.bind(this, index)}
                       published={this.state.published} />;
         break;
       case "paragraph":
         component = <ParagraphBlock
                       key={index}
                       text={value}
+                      order={this.state.nextOrder}
                       removeCallback={this.deleteBlock.bind(this, index)}
                       published={this.state.published} />;
         break;
       case "code":
         component = <CodeBlock
                       key={index}
-                      removeCallback={this.deleteBlock.bind(this, index)}
                       code={value}
+                      order={this.state.nextOrder}
+                      removeCallback={this.deleteBlock.bind(this, index)}
                       published={this.state.published} />;
         break;
       default:
           console.log("Unknown block type");
     }
+
     this.state.components.push(component);
+    this.state.nextOrder++;
   }
 
   deleteBlock (index) {

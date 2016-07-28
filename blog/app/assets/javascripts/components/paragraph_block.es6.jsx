@@ -173,7 +173,7 @@ class ParagraphBlock extends React.Component {
                   onKeyUp={this.handleKeyUp.bind(this)}
                   onChange={this.change.bind(this)}
                   value={this.state.value}
-                  name="article[blocks][paragraph]">
+                  name={"article[blocks][" + this.props.order + "][paragraph]"}>
         </textarea>
       </p>
     );
