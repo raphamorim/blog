@@ -5,4 +5,7 @@ WORKDIR /blog
 ADD Gemfile /blog/Gemfile
 ADD Gemfile.lock /blog/Gemfile.lock
 RUN bundle install
+EXPOSE 3000
 ADD . /blog
+CMD cd /blog
+CMD rails server --binding 0.0.0.0
