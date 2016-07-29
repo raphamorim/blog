@@ -55,6 +55,3 @@ gem 'pg'
 gem 'pry'
 gem 'pry-rails'
 gem 'pry-byebug'
-
-# Disqus
-gem 'disqus_rails'
