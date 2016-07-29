@@ -30,16 +30,6 @@ ActiveRecord::Schema.define(version: 20160726003005) do
 
   add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true, using: :btree
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "commenter"
-    t.text     "body"
-    t.integer  "article_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
-
   create_table "taggings", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "tag_id"
@@ -64,7 +54,6 @@ ActiveRecord::Schema.define(version: 20160726003005) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "comments", "articles"
   add_foreign_key "taggings", "articles"
   add_foreign_key "taggings", "tags"
 end
