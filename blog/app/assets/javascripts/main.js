@@ -9,3 +9,10 @@ var easter_egg = new Konami(function() {
         authSection.style.display = "inherit";
     }
 });
+
+(function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//blog-pantuza-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
