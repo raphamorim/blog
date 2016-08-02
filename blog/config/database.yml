@@ -15,7 +15,7 @@ development: &default
   database: blog
   pool: 5
   username: postgres
-  host: db
+  host: localhost
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -26,5 +26,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: blog
+  pool: 5
+  username: postgres
+  host: db
+  port: 5432
