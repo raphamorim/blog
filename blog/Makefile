@@ -25,13 +25,17 @@ install: docker-compose.yml
 	@echo "It will build docker images and run the blog.."
 	$(COMPOSE) up -d
 	@sleep 5
-	$(COMPOSE) run --name blog_db_setup web rake db:setup RAILS_ENV=development
+	$(COMPOSE) run --name blog_db_setup web rake db:setup RAILS_ENV=production
 	$(DOCKER) rm blog_db_setup
 
-uninstall: stop
-	@echo "Uninstalling blog.."
+clean: stop
+	@echo "Removing blog containers.."
 	$(DOCKER) rm blog_app
 	$(DOCKER) rm blog_db
+	$(DOCKER) rm blog_db_setup
+
+uninstall: stop clean
+	@echo "Uninstalling blog.."
 	$(DOCKER) rmi blog_web
 
 start:
