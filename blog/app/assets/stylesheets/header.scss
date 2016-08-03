@@ -26,45 +26,11 @@ header {
         }
     }
 
-    .author {
-        width: 30%;
-        float: right;
-
-        .author-info {
-
-            display: inline-flex;
-
-            .author-figure {
-
-                width: 35%;
-
-                figure {
-                    width: 60%;
-                }
-
-                span {
-                    width: inherit;
-                    position: relative;
-                    bottom: 20px;
-                    color: yellow;
-                    font-family: monospace;
-                    font-size: smaller;
-                    padding-left: 18%;
-                }
-            }
-
-            p {
-                color: white;
-                font-size: small;
-                letter-spacing: 1px;
-                height: 90px;
-                margin-top: 13%;
-            }
-        }
-    }
-
     .search {
-        width: 100%;
+        width: 40%;
+        float: right;
+        padding-top: 1%;
+        padding-right: 1%;
 
         form {
             width: 100%;
