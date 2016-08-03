@@ -225,7 +225,7 @@
 
 .article-show {
 
-    margin-top: 10%;
+    margin-top: 2%;
 
     article {
 
@@ -257,6 +257,17 @@
                 color: gray;
                 font-family: monospace;
                 font-size: small;
+            }
+
+            .social-share-button {
+                float: right;
+                width: 30%;
+
+                .ssb-icon {
+                    background-size: 25px 25px;
+                    height: 25px;
+                    width: 25px;
+                }
             }
         }
 
@@ -306,5 +317,23 @@
         width: 60%;
         position: relative;
         left: 20%;
+        margin-top: 5%;
+    }
+
+    #botton-share-section {
+
+        .social-share-button {
+
+            position: relative;
+            width: 60%;
+            left: 20%;
+            padding-bottom: 2%;
+
+            .ssb-icon {
+                background-size: 25px 25px;
+                height: 25px;
+                width: 25px;
+            }
+        }
     }
 }
