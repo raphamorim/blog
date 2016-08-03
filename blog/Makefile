@@ -21,12 +21,13 @@ help:
 	@echo "status    - show status of containers using docker ps"
 
 
-install: docker-compose.yml clean_tmp
+install: docker-compose.yml
 	@echo "It will build docker images and run the blog.."
 	$(COMPOSE) up -d
 	@sleep 5
 	$(COMPOSE) run --name blog_db_setup web rake db:setup RAILS_ENV=production
 	$(COMPOSE) run --name blog_assets web rake assets:precompile RAILS_ENV=production
+	make clean_tmp
 
 clean_tmp:
 	$(DOCKER) rm blog_db_setup || true
