@@ -14,7 +14,10 @@ all: help
 
 help:
 	@echo "Available rules are:"
+	@echo
 	@echo "install   - build docker image and run project"
+	@echo "uninstall - Removes the blog containers and image"
+	@echo "clean     - Removes blog containers"
 	@echo "start     - starts blog containers"
 	@echo "stop      - stops blog containers"
 	@echo "restart   - stops and starts blog containers"
@@ -23,36 +26,39 @@ help:
 
 install: docker-compose.yml
 	@echo "It will build docker images and run the blog.."
-	$(COMPOSE) up -d
+	@$(COMPOSE) up -d
 	@sleep 5
-	$(COMPOSE) run --name blog_db_setup web rake db:setup RAILS_ENV=production
-	$(COMPOSE) run --name blog_assets web rake assets:precompile RAILS_ENV=production
-	make clean_tmp
+	@echo "Running database setup.."
+	@$(COMPOSE) run --name blog_db_setup web rake db:setup RAILS_ENV=production
+	@echo "Compiling blog assets.."
+	@$(COMPOSE) run --name blog_assets web rake assets:precompile RAILS_ENV=production
+	@make _clean_tmp
 
-clean_tmp:
-	$(DOCKER) rm blog_db_setup || true
-	$(DOCKER) rm blog_assets || true
+_clean_tmp:
+	@echo "Removing temporary containers.."
+	@$(DOCKER) rm blog_db_setup || true
+	@$(DOCKER) rm blog_assets || true
 
-clean: stop clean_tmp
+clean: stop _clean_tmp
 	@echo "Removing blog containers.."
-	$(DOCKER) rm blog_app
-	$(DOCKER) rm blog_db
+	@$(DOCKER) rm blog_app
+	@$(DOCKER) rm blog_db
 
 uninstall: stop clean
 	@echo "Uninstalling blog.."
-	$(DOCKER) rmi blog_web
+	@$(DOCKER) rmi blog_web
 
 start:
 	@echo "Starting blog..."
-	$(DOCKER) start blog_db
-	$(DOCKER) start blog_app
+	@$(DOCKER) start blog_db
+	@$(DOCKER) start blog_app
 
 stop:
 	@echo "Stoping blog..."
-	$(DOCKER) stop blog_db
-	$(DOCKER) stop blog_app
+	@$(DOCKER) stop blog_db
+	@$(DOCKER) stop blog_app
 
 restart: stop start
 
 status:
-	$(DOCKER) ps --all
+	@$(DOCKER) ps --all
