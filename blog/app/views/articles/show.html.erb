@@ -24,6 +24,26 @@
         <section id="botton-share-section">
             <%= social_share_button_tag(@article.title) %>
         </section>
+
+        <section class="author">
+            <div class="author-info">
+                <div class="author-figure">
+                    <figure>
+                        <%= image_tag "author.png",
+                            size: "100",
+                            alt: "Gustavo Pantuza" %>
+                    </figure>
+                    <span>Gustavo Pantuza</span>
+                </div>
+                <div id="author-text">
+                    <p>
+                        Posts em português para fortalecer a comunidade brasileira
+                        de Ciência da computação.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         </hr>
 
         <section id="article-bottom-ads">
