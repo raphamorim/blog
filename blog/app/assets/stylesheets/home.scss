@@ -1,3 +1,51 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* Variable definitions */
+$content_width: 60%;
+$atf_box_height: 500px;
+
+#home-content {
+
+    position: relative;
+    width: $content_width;
+    left: 20%;
+
+    * {
+        border: 1px solid white;
+    }
+
+    .above-the-fold {
+
+        margin-bottom: 30px;
+    }
+
+    .atf-title {
+
+        color: cyan;
+        font-family: monospace;
+        font-weight: bold;
+        letter-spacing: 2px;
+        padding-left: 1%;
+    }
+
+    #last-recently-created {
+
+        float: left;
+        width: 49%;
+        height: $atf_box_height;
+    }
+
+    #top-articles {
+
+        float: right;
+        width: 49%;
+        height: $atf_box_height;
+    }
+
+    #recommended-articles {
+
+        clear: both;
+        width: 100%;
+        height: 300px;
+    }
+}
