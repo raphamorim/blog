@@ -1,22 +1,23 @@
 
 
 /* Variable definitions */
-$content_width: 60%;
+$content_width: 70%;
 $atf_box_height: 500px;
+
+$atf_title_size: 300px;
 
 #home-content {
 
     position: relative;
     width: $content_width;
-    left: 20%;
+    left: 15%;
 
-    * {
-        border: 1px solid white;
-    }
 
     .above-the-fold {
 
         margin-bottom: 30px;
+        border-color: #9ecaed;
+        box-shadow: 0 0 10px #9ecaed;
     }
 
     .atf-title {
@@ -25,20 +26,51 @@ $atf_box_height: 500px;
         font-family: monospace;
         font-weight: bold;
         letter-spacing: 2px;
-        padding-left: 1%;
+        padding-left: 5%;
     }
 
     #last-recently-created {
 
         float: left;
-        width: 49%;
+        width: 48%;
         height: $atf_box_height;
+
+        .content-list {
+            header {
+
+                position: absolute;
+                width: $atf_title_size;
+
+                h1 {
+
+                    color: green;
+                    background: black;
+                    font-family: monospace;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    font-size: large;
+                    font-style: normal;
+                }
+            }
+
+            span {
+                position: absolute;
+                width: $atf_title_size;
+                text-align: center;
+                top: 33%;
+                background: black;
+                color: gray;
+                font-family: monospace;
+                letter-spacing: 1px;
+            }
+        }
     }
 
     #top-articles {
 
         float: right;
-        width: 49%;
+        width: 48%;
         height: $atf_box_height;
     }
 
