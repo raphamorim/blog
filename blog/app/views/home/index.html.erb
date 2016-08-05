@@ -10,6 +10,34 @@
         <header>
             <h3 class="atf-title">Últimos artigos</h3>
         </header>
+
+        <section class="content-list">
+            <ul>
+                <% @last_articles.each do |article| %>
+                    <li>
+                        <article>
+                            <%= link_to article_path(article) do %>
+                                <header>
+                                    <h1><%= article.title %></h1>
+                                </header>
+                                <span>
+                                    <%= article.subtitle %>
+                                </span>
+                                <figure>
+                                    <img
+                                        src="<%= article.cover %>"
+                                        width="300"
+                                        height="300"
+                                        alt="" />
+                                    <figcaption>
+                                    </figcaption>
+                                </figure>
+                            <% end %>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        </section>
     </section>
 
     <section id="top-articles" class="above-the-fold">
