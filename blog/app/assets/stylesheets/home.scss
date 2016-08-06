@@ -65,8 +65,9 @@ $item_text_opacity: .8;
                             header {
 
                                 position: absolute;
-                                width: $atf_title_size;
-                                z-index: 1;
+                                width: 184px;
+                                margin-left: 7%;
+                                margin-top: -3%;
 
                                 h1 {
 
@@ -84,16 +85,18 @@ $item_text_opacity: .8;
 
                             span {
                                 position: relative;
-                                width: $atf_title_size;
+                                width: 184px;
                                 text-align: justify;
                                 float: left;
-                                width: $atf_title_size;
-                                bottom: 70px;
+                                bottom: 80px;
+                                left: 15%;
                                 background: black;
                                 color: gray;
                                 font-family: monospace;
+                                font-size: smaller;
                                 letter-spacing: 1px;
                                 opacity: $item_text_opacity;
+                                line-height: 1.0;
                             }
                         }
                     }
@@ -107,6 +110,19 @@ $item_text_opacity: .8;
         float: right;
         width: 48%;
         height: $atf_box_height;
+    }
+
+    .home-pub-middle {
+
+        margin-top: 10%;
+        margin-bottom: 10%;
+        clear: both;
+    }
+
+    .home-pub-bottom {
+
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 
     #recommended-articles {
