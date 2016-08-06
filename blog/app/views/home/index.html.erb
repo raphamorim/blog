@@ -7,31 +7,36 @@
 <section id="home-content">
 
     <section id="last-recently-created" class="above-the-fold">
-        <header>
+        <header class="home-list-title">
             <h3 class="atf-title">Últimos artigos</h3>
         </header>
 
         <section class="content-list">
-            <ul>
-                <% @last_articles.each do |article| %>
+            <ul class="left">
+                <% @last_articles.each_with_index do |article, index| %>
+
+                    <% if index == 2 %>
+                        </ul>
+                        <ul class="right">
+                    <% end%>
                     <li>
                         <article>
                             <%= link_to article_path(article) do %>
                                 <header>
                                     <h1><%= article.title %></h1>
                                 </header>
-                                <span>
-                                    <%= article.subtitle %>
-                                </span>
                                 <figure>
                                     <img
                                         src="<%= article.cover %>"
-                                        width="300"
-                                        height="300"
+                                        width="180"
+                                        height="180"
                                         alt="" />
                                     <figcaption>
                                     </figcaption>
                                 </figure>
+                                <span>
+                                    <%= article.subtitle %>
+                                </span>
                             <% end %>
                         </article>
                     </li>
