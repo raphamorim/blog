@@ -4,7 +4,9 @@
 $content_width: 70%;
 $atf_box_height: 500px;
 
-$atf_title_size: 300px;
+$atf_title_size: 180px;
+
+$item_text_opacity: .8;
 
 #home-content {
 
@@ -15,7 +17,6 @@ $atf_title_size: 300px;
 
     .above-the-fold {
 
-        margin-bottom: 30px;
         border-color: #9ecaed;
         box-shadow: 0 0 10px #9ecaed;
     }
@@ -35,34 +36,68 @@ $atf_title_size: 300px;
         width: 48%;
         height: $atf_box_height;
 
+        .home-list-title {
+
+            height: 5%;
+        }
+
         .content-list {
-            header {
 
-                position: absolute;
-                width: $atf_title_size;
+            width: 100%;
+            height: 92%;
+            position: relative;
 
-                h1 {
+            ul {
 
-                    color: green;
-                    background: black;
-                    font-family: monospace;
-                    letter-spacing: 1px;
-                    text-transform: uppercase;
-                    text-align: center;
-                    font-size: large;
-                    font-style: normal;
+                display: inline-flex;
+                padding: 0px;
+                width: 100%;
+                height: 50%;
+                margin: 0px;
+
+                li {
+
+                    width: 50%;
+
+                    article {
+
+                        a {
+                            header {
+
+                                position: absolute;
+                                width: $atf_title_size;
+                                z-index: 1;
+
+                                h1 {
+
+                                    color: green;
+                                    background: black;
+                                    font-family: monospace;
+                                    letter-spacing: 1px;
+                                    text-transform: uppercase;
+                                    text-align: center;
+                                    font-size: medium;
+                                    font-style: normal;
+                                    opacity: $item_text_opacity;
+                                }
+                            }
+
+                            span {
+                                position: relative;
+                                width: $atf_title_size;
+                                text-align: justify;
+                                float: left;
+                                width: $atf_title_size;
+                                bottom: 70px;
+                                background: black;
+                                color: gray;
+                                font-family: monospace;
+                                letter-spacing: 1px;
+                                opacity: $item_text_opacity;
+                            }
+                        }
+                    }
                 }
-            }
-
-            span {
-                position: absolute;
-                width: $atf_title_size;
-                text-align: center;
-                top: 33%;
-                background: black;
-                color: gray;
-                font-family: monospace;
-                letter-spacing: 1px;
             }
         }
     }
