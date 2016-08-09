@@ -88,7 +88,7 @@ $item_text_opacity: .8;
                                 width: 184px;
                                 text-align: justify;
                                 float: left;
-                                bottom: 80px;
+                                bottom: 60px;
                                 left: 15%;
                                 background: black;
                                 color: gray;
@@ -114,9 +114,9 @@ $item_text_opacity: .8;
 
     .home-pub-middle {
 
-        margin-top: 10%;
-        margin-bottom: 10%;
         clear: both;
+        position: relative;
+        top: 30px;
     }
 
     .home-pub-bottom {
@@ -127,8 +127,82 @@ $item_text_opacity: .8;
 
     #recommended-articles {
 
+        position: relative;
+        top: 30px;
         clear: both;
         width: 100%;
         height: 300px;
+        border-color: #9ecaed;
+        box-shadow: 0 0 10px #9ecaed;
+
+        .content-list {
+
+            width: 100%;
+            position: relative;
+            height: 80%;
+
+            ul {
+
+                display: inline-flex;
+                width: 100%;
+                position: relative;
+                height: 100%;
+                padding: 0px;
+
+                li {
+
+                    position: relative;
+                    width: 25%;
+
+                    article {
+                        position: relative;
+                        height: 100%;
+
+                        header {
+                            position: absolute;
+                            float: left;
+                            width: 200px;
+                            left: 10%;
+
+                            h1 {
+
+                                color: green;
+                                background: black;
+                                font-family: monospace;
+                                letter-spacing: 1px;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-size: medium;
+                                font-style: normal;
+                                opacity: $item_text_opacity;
+                            }
+                        }
+                    }
+
+                    .home-recommended-tags {
+
+                        width: 65%;
+                        position: relative;
+                        height: 15%;
+                        left: 15%;
+                        text-align: center;
+                        bottom: 15px;
+                        color: white;
+
+                        span {
+
+                            padding-left: 1px;
+                            padding-right: 1px;
+
+                            a {
+
+                                font-family: monospace;
+                                letter-spacing: 1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
