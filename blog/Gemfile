@@ -58,3 +58,6 @@ gem 'pry-byebug'
 
 # Share buttom
 gem 'social-share-button'
+
+# Redis
+gem 'redis'
