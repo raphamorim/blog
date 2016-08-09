@@ -68,6 +68,38 @@
         <header>
             <h3 class="atf-title">Artigos recomendados</h3>
         </header>
+        <section class="content-list">
+            <ul class="left">
+                <% @last_articles.each_with_index do |article, index| %>
+
+                    <li>
+                        <article>
+                            <%= link_to article_path(article) do %>
+                                <header>
+                                    <h1><%= article.title %></h1>
+                                </header>
+                                <figure>
+                                    <img
+                                        src="<%= article.cover %>"
+                                        width="180"
+                                        height="180"
+                                        alt="" />
+                                    <figcaption>
+                                    </figcaption>
+                                </figure>
+                                <div class="home-recommended-tags" >
+                                    <%= article.tags.each do |tag| %>
+                                        <span>
+                                            <%= link_to tag.name, article_path(article) %>
+                                        </span> .
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        </section>
     </section>
 
     <section class="home-pub-bottom">
