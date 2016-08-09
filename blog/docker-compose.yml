@@ -10,6 +10,11 @@ services:
     image: redis
     ports:
       - "6379:6379"
+  geoip:
+    container_name: blog_geoip
+    image: fiorix/freegeoip
+    ports:
+      - "8080:8080"
   web:
     container_name: blog_app
     build: .
@@ -21,3 +26,4 @@ services:
     depends_on:
       - db
       - session
+      - geoip
