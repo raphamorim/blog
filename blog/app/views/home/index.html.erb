@@ -88,7 +88,7 @@
                                     </figcaption>
                                 </figure>
                                 <div class="home-recommended-tags" >
-                                    <%= article.tags.each do |tag| %>
+                                    <% article.tags.each do |tag| %>
                                         <span>
                                             <%= link_to tag.name, article_path(article) %>
                                         </span> .
