@@ -61,3 +61,6 @@ gem 'social-share-button'
 
 # Redis
 gem 'redis'
+
+# Google analytics api client
+gem 'google-api-client'
