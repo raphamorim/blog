@@ -22,6 +22,14 @@ module HomeHelper
       :sort => '-ga:pageviews'
     )
 
-    result
+    top_articles = []
+    result.rows.each do |row|
+      if row[1].include? "/articles/" and not row[1].include? "/articles/new"
+        article = Article.find_by_permalink(row[1].split("/articles/")[-1].split("/")[0])
+        top_articles.append(article)
+      end
+    end
+
+    top_articles
   end
 end
