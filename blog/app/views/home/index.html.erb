@@ -49,6 +49,38 @@
         <header>
             <h3 class="atf-title">Mais acessados</h3>
         </header>
+        <section class="content-list">
+            <ul class="left">
+                <% @top_articles.each_with_index do |article, index| %>
+
+                    <% if index == 2 %>
+                        </ul>
+                        <ul class="right">
+                    <% end%>
+                    <li>
+                        <article>
+                            <%= link_to article_path(article) do %>
+                                <header>
+                                    <h1><%= article.title %></h1>
+                                </header>
+                                <figure>
+                                    <img
+                                        src="<%= article.cover %>"
+                                        width="180"
+                                        height="180"
+                                        alt="" />
+                                    <figcaption>
+                                    </figcaption>
+                                </figure>
+                                <span>
+                                    <%= article.subtitle %>
+                                </span>
+                            <% end %>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        </section>
     </section>
 
     <section class="home-pub-middle">
