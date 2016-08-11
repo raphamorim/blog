@@ -229,7 +229,17 @@
 
     article {
 
+        #article-top-ads {
+
+            position: relative;
+            left: 2%;
+        }
+
         header {
+
+            position: relative;
+            width: 65%;
+            left: 18%;
 
             h1 {
                 font-size: 40px;
@@ -251,7 +261,7 @@
 
             time {
                 position: relative;
-                margin: 18%;
+                margin: 2%;
                 padding-top: 2%;
                 padding-bottom: 2%;
                 color: gray;
@@ -261,7 +271,7 @@
 
             .social-share-button {
                 float: right;
-                width: 30%;
+                width: 25%;
 
                 .ssb-icon {
                     background-size: 25px 25px;
@@ -292,11 +302,12 @@
             }
 
             pre {
-                width: 60%;
+                width: 65%;
                 position: relative;
                 margin: auto;
                 border: 1px solid blue;
                 border-radius: 3px;
+                left: 2%;
             }
 
             .video-block {
