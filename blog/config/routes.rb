@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   # blog routes
   get 'home/index'
-  get 'article/index'
 
   get 'feed' => 'articles#feed'
 
