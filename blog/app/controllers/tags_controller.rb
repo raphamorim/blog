@@ -2,6 +2,7 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.all
+    @articles = Article.first(5)
   end
 
   def show
