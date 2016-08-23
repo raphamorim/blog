@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'talks/index'
+
+  get 'talks/new'
+
+  get 'talks/create'
+
+  get 'talks/edit'
+
+  get 'talks/update'
+
+  get 'talks/destroy'
+
   get 'projects/index'
 
   get 'projects/new'
