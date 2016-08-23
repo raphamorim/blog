@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  conf_name: MyString
+  conf_link: MyString
+  conf_date: 2016-08-23
+  slides: MyString
+  video: MyString
+
+two:
+  title: MyString
+  conf_name: MyString
+  conf_link: MyString
+  conf_date: 2016-08-23
+  slides: MyString
+  video: MyString
