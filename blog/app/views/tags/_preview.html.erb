@@ -1,1 +1,30 @@
-<h1>teste preview</h1>
+<% @articles.each do |article| %>
+
+    <article class="preview">
+        <section class="left">
+            <%= link_to article_path(article) do %>
+                <figure>
+                    <img
+                        src="<%= article.cover %>"
+                        width="200"
+                        height="200"
+                        alt="" />
+                    <figcaption>
+                    </figcaption>
+                </figure>
+            <% end %>
+        </section>
+
+        <section class="right">
+
+            <%= link_to article_path(article) do %>
+                <header>
+                    <h1><%= article.title %></h1>
+                </header>
+                <span>
+                    <%= article.abstract %>
+                </span>
+            <% end %>
+        </section>
+    </article>
+<% end %>
