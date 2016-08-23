@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'projects/index'
+
+  get 'projects/new'
+
+  get 'projects/create'
+
+  get 'projects/destroy'
+
+  get 'projects/edit'
+
+  get 'projects/update'
+
+  get 'projects/show'
+
   get 'login' => 'sessions#new', :as => 'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
   get 'signup' => 'users#new', :as => 'signup'
