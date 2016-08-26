@@ -55,6 +55,8 @@ gem 'react-rails'
 # Postgres
 gem 'pg'
 
+gem 'addressable'
+
 # Debugging
 gem 'pry'
 gem 'pry-rails'
