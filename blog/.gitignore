@@ -20,3 +20,5 @@
 !/public/uploads/.gitkeep
 
 *.env
+
+blog.pantuza.com.json
