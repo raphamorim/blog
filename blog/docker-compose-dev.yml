@@ -1,0 +1,31 @@
+version: '2'
+services:
+  db:
+    container_name: blog_db_dev
+    image: postgres
+    ports:
+      - "5432:5432"
+  session:
+    container_name: blog_session_dev
+    image: redis
+    ports:
+      - "6379:6379"
+  geoip:
+    container_name: blog_geoip_dev
+    image: fiorix/freegeoip
+    ports:
+      - "8080:8080"
+  web:
+    container_name: blog_app_dev
+    build: .
+    command: bash -c "sleep 5 && bundle exec rake db:setup && SECRET_KEY_BASE=`rake secret` bundle exec rails server -b 0.0.0.0"
+    volumes:
+      - .:/blog
+    ports:
+      - "3000:3000"
+    env_file:
+      - config/deploy/development.env
+    depends_on:
+      - db
+      - session
+      - geoip
