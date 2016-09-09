@@ -37,5 +37,6 @@ services:
       - geoip
     networks:
       - blog_net
-  networks:
-    blog_net:
+
+networks:
+  blog_net:
