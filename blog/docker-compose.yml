@@ -5,6 +5,10 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    volumes:
+        - db_vol:/etc/postgresql
+        - db_vol:/var/log/postgresql
+        - db_vol:/var/lib/postgresql
     networks:
       - blog_net
   session:
@@ -12,6 +16,8 @@ services:
     image: redis
     ports:
       - "6379:6379"
+    volumes:
+      - session_vol:/data
     networks:
       - blog_net
   geoip:
@@ -37,6 +43,10 @@ services:
       - geoip
     networks:
       - blog_net
+
+volumes:
+  session_vol:
+  db_vol:
 
 networks:
   blog_net:
