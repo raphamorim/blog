@@ -5,16 +5,22 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+    networks:
+      - blog_net
   session:
     container_name: blog_session
     image: redis
     ports:
       - "6379:6379"
+    networks:
+      - blog_net
   geoip:
     container_name: blog_geoip
     image: fiorix/freegeoip
     ports:
       - "8080:8080"
+    networks:
+      - blog_net
   web:
     container_name: blog_app
     build: .
@@ -29,3 +35,7 @@ services:
       - db
       - session
       - geoip
+    networks:
+      - blog_net
+  networks:
+    blog_net:
