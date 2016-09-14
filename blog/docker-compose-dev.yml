@@ -31,7 +31,7 @@ services:
   web:
     container_name: blog_app_dev
     build: .
-    command: bash -c "sleep 5 && bundle exec rake db:setup && SECRET_KEY_BASE=`rake secret` bundle exec rails server -b 0.0.0.0"
+    command: bash -c "sleep 5 && bundle exec rake db:exists && bundle exec rake db:migrate || bundle exec rake db:setup && SECRET_KEY_BASE=`rake secret` bundle exec rails server -b 0.0.0.0"
     volumes:
       - .:/blog
     ports:
