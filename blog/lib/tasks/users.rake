@@ -6,7 +6,7 @@ namespace :users do
     password = $stdin.readline()
 
     salt = BCrypt::Engine.generate_salt
-    encrypted = BCrypt::Engine.hash_secret(password, salt)
+    encrypted = BCrypt::Engine.hash_secret(password.chomp!, salt)
 
     puts "Password: #{encrypted}"
     puts "Salt: #{salt}"

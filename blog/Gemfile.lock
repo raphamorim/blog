@@ -258,6 +258,3 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn (~> 4.9)
   web-console (~> 2.0)
-
-BUNDLED WITH
-   1.12.5
