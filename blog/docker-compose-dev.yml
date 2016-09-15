@@ -1,0 +1,53 @@
+version: '2'
+services:
+  db:
+    container_name: blog_db_dev
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+        - db_vol_dev:/etc/postgresql
+        - db_vol_dev:/var/log/postgresql
+        - db_vol_dev:/var/lib/postgresql
+    networks:
+      - blog_net_dev
+  session:
+    container_name: blog_session_dev
+    image: redis
+    ports:
+      - "6379:6379"
+    command: bash -c "redis-server --appendonly yes"
+    volumes:
+      - session_vol_dev:/data
+    networks:
+      - blog_net_dev
+  geoip:
+    container_name: blog_geoip_dev
+    image: fiorix/freegeoip
+    ports:
+      - "8080:8080"
+    networks:
+      - blog_net_dev
+  web:
+    container_name: blog_app_dev
+    build: .
+    command: bash -c "sleep 5 && bundle exec rake db:exists && bundle exec rake db:migrate || bundle exec rake db:setup && SECRET_KEY_BASE=`rake secret` bundle exec rails server -b 0.0.0.0"
+    volumes:
+      - .:/blog
+    ports:
+      - "3000:3000"
+    env_file:
+      - config/deploy/development.env
+    depends_on:
+      - db
+      - session
+      - geoip
+    networks:
+      - blog_net_dev
+
+volumes:
+  session_vol_dev:
+  db_vol_dev:
+
+networks:
+  blog_net_dev:

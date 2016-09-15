@@ -8,7 +8,7 @@ module UsersHelper
 
   IN_A_DAY = 60 * 60 * 24
   DEFAULT_LOCATION = "Brazil-Rio de Janeiro"
-  REGION_API = "http://localhost:8080/json/"
+  REGION_API = $geoip + "/json/"
 
   def get_location_from_request()
 
