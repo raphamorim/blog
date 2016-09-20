@@ -8,7 +8,7 @@ services:
     volumes:
         - db_vol:/etc/postgresql
         - db_vol:/var/log/postgresql
-        - db_vol:/var/lib/postgresql
+        - db_vol:/var/lib/postgresql/data
     networks:
       - blog_net
   session:
