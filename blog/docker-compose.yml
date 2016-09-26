@@ -33,6 +33,7 @@ services:
     command: bash -c "sleep 5 && bundle exec rake db:setup && SECRET_KEY_BASE=`rake secret` bundle exec unicorn -c config/unicorn.rb"
     volumes:
       - .:/blog
+      - uploads:/blog/public/uploads
     ports:
       - "3000:3000"
     env_file:
@@ -47,6 +48,7 @@ services:
 volumes:
   session_vol:
   db_vol:
+  uploads:
 
 networks:
   blog_net:
