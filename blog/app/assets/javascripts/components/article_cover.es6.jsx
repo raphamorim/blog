@@ -23,7 +23,7 @@ class ArticleCover extends React.Component {
        <form method="POST"
              encType="multipart/form-data"
              acceptCharset="UTF-8"
-             action="/articles/cover">
+             action="/artigos/cover">
 
            <input type="hidden" name="id" value={this.props.permalink} />
            <input type="file"
