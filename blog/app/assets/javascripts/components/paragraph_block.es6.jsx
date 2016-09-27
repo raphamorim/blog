@@ -201,7 +201,7 @@ class ParagraphBlock extends React.Component {
     );
 
     const paragraph = (
-      <p className="published">{this.props.text}</p>
+      <p className="published">{this.state.value}</p>
     );
 
     if(this.state.published) {
