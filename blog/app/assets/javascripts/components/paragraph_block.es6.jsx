@@ -25,6 +25,7 @@ class ParagraphBlock extends React.Component {
     this.CTRL = 17;
     this.B = 66;
     this.I = 73;
+    this.K = 75;
 
     /* Tag bold symbols */
     this.boldTags = {
@@ -36,6 +37,12 @@ class ParagraphBlock extends React.Component {
     this.italicTags = {
       OPEN: "<i>",
       CLOSE: "</i>"
+    }
+
+    /* Link symbol */
+    this.linkTags = {
+      OPEN: "<a href='' >",
+      CLOSE: "</a>"
     }
   }
 
@@ -68,6 +75,8 @@ class ParagraphBlock extends React.Component {
     } else if(key == this.I && this.state.ctrlPressed) {
       this.setStyle(start, end, event, this.italicTags);
 
+    } else if(key == this.K && this.state.ctrlPressed) {
+      this.addLink(start, end, event, this.linkTags);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
@@ -146,6 +155,24 @@ class ParagraphBlock extends React.Component {
     this.setState({
       value: data.newValue,
       textStyle: data.newStyle
+    });
+
+    event.target.selectionEnd += data.length;
+    event.preventDefault();
+  }
+
+  /**
+   * Adds links at start and end text selection
+   */
+  addLink (start, end, event, tagType) {
+
+    const before = this.state.value.substring(0, start) + tagType.OPEN;
+    const current = this.state.value.substring(start, end);
+    let after = this.state.value.substring(end) + tagType.CLOSE;
+
+    const newValue = before + current + after;
+    this.setState({
+      value: newValue
     });
 
     event.target.selectionEnd += data.length;
