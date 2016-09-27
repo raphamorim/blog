@@ -248,11 +248,12 @@
                 font-style: italic;
                 position: relative;
                 bottom: 35px;
+                letter-spacing: 1px;
+                font-weight: lighter;
             }
 
             time {
                 position: relative;
-                margin: 2%;
                 padding-top: 2%;
                 padding-bottom: 2%;
                 color: gray;
@@ -277,8 +278,8 @@
             padding-bottom: 2%;
 
             * {
-                padding-top: 1%;
-                padding-bottom: 1%;
+                padding-top: 2%;
+                padding-bottom: 2%;
             }
 
             p {
@@ -287,6 +288,7 @@
                 font-family: sans-serif;
                 font-size: large;
                 letter-spacing: 1px;
+                font-weight: lighter;
             }
 
             pre {
@@ -375,5 +377,8 @@
 
     #disqus_thread {
         margin-top: 5%;
+        position: relative;
+        width: 60%;
+        left: 20%;
     }
 }
