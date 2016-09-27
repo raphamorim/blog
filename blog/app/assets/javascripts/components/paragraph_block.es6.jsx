@@ -13,17 +13,12 @@ class ParagraphBlock extends React.Component {
       ITALIC: 2
     }
 
-    let published = false;
-    if (typeof this.props.text == "string" && this.props.text.length > 0) {
-      published = true;
-    }
-
     this.state = {
-      published: published,
+      published: this.props.published || false,
       ctrlPressed: false,
 
       textStyle: this.styles.NONE,
-      value: ""
+      value: this.props.text || ""
     }
 
     /* Key Codes */
