@@ -66,20 +66,23 @@ class ParagraphBlock extends React.Component {
   handleKeyUp (event) {
 
     const key = event.keyCode;
-    const start = event.target.selectionStart;
-    const end = event.target.selectionEnd;
+    const selection = window.getSelection();
+    const start = selection.anchorOffset;
+    const end = selection.focusOffset;
 
     if(key == this.B && this.state.ctrlPressed) {
-      this.setStyle(start, end, event, this.boldTags);
+      this.setStyle(start, end, selection, this.boldTags);
 
     } else if(key == this.I && this.state.ctrlPressed) {
-      this.setStyle(start, end, event, this.italicTags);
+      this.setStyle(start, end, selection, this.italicTags);
 
     } else if(key == this.K && this.state.ctrlPressed) {
-      this.addLink(start, end, event, this.linkTags);
+      this.addLink(start, end, selection, this.linkTags);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
+
+    event.preventDefault();
   }
 
   /**
@@ -134,7 +137,7 @@ class ParagraphBlock extends React.Component {
   /**
    * Sets the style of the current selection or open/close bold or italic tags
    */
-  setStyle (start, end, event, tagType) {
+  setStyle (start, end, selection, tagType) {
 
     let data = {
       tag: tagType.OPEN,
@@ -157,8 +160,13 @@ class ParagraphBlock extends React.Component {
       textStyle: data.newStyle
     });
 
-    event.target.selectionEnd += data.length;
-    event.preventDefault();
+    this.setPosition(selection, start, end);
+  }
+
+  setPosition (selection, start, end) {
+
+    let range = document.createRange()
+    debugger;
   }
 
   /**
@@ -189,14 +197,15 @@ class ParagraphBlock extends React.Component {
       <p className="paragraph-block-form">
         <BlockRemove class="paragraph-block-remove" clickHandler={this.props.removeCallback}/>
         <label>Paragraph</label>
-        <textarea rows="5"
-                  columns="60"
-                  onKeyDown={this.handleKeyDown.bind(this)}
-                  onKeyUp={this.handleKeyUp.bind(this)}
-                  onChange={this.change.bind(this)}
-                  value={this.state.value}
-                  name={"article[blocks][" + this.props.order + "][paragraph]"}>
-        </textarea>
+        <div
+          contentEditable="true"
+          className="unpublished"
+          onKeyDown={this.handleKeyDown.bind(this)}
+          onKeyUp={this.handleKeyUp.bind(this)}
+          onChange={this.change.bind(this)}
+          name={"article[blocks][" + this.props.order + "][paragraph]"}>
+          {this.state.value}
+        </div>
       </p>
     );
 
