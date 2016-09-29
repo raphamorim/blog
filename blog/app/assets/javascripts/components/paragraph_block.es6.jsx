@@ -151,9 +151,8 @@ class ParagraphBlock extends React.Component {
           onChange={this.change.bind(this)}
           onInput={this.change.bind(this)}
           onClick={this.allowEdition.bind(this)}
-          onBlur={this.closeEdition.bind(this)}>
-          {this.state.value}
-        </div>
+          onBlur={this.closeEdition.bind(this)}
+          dangerouslySetInnerHTML={{__html: this.state.value}} />
         {anchor}
         <input
           type="hidden"
