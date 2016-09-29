@@ -166,7 +166,21 @@
 
         div.unpublished {
 
-          color: white;
+            color: white;
+            width: 60%;
+            height: 100px;
+            position: relative;
+            left: 20%;
+            text-align: justify;
+            font-weight: lighter;
+            letter-spacing: 1px;
+        }
+
+        .anchor-input {
+
+            width: 30%;
+            color: cyan;
+            border-color: white;
         }
 
         textarea {
