@@ -10,12 +10,13 @@ class ParagraphBlock extends React.Component {
     this.state = {
       published: this.props.published || false,
       ctrlPressed: false,
+      anchor: false,
       value: this.props.text || ""
     }
 
     this.CTRL = 17;
-    this.CMD = 91;
     this.L = 76;
+    this.currentAnchor = undefined;
   }
 
   /**
@@ -25,7 +26,7 @@ class ParagraphBlock extends React.Component {
 
     const key = event.keyCode;
 
-    if(key == this.CTRL || key == this.CMD) {
+    if(key == this.CTRL) {
       this.state.ctrlPressed = true;
     }
   }
@@ -45,39 +46,99 @@ class ParagraphBlock extends React.Component {
     const end = selection.focusOffset;
 
     if(key == this.L && this.state.ctrlPressed) {
-      this.addLink();
-    } else if (key == this.CTRL || key == this.CMD) {
+      this.insertLinkInput(event);
+    } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
   }
 
 
   /**
-   * Adds links at start and end text selection
+   * Inserts tag a after paragraph to use as link url
    */
-  addLink () {
+  insertLinkInput (event) {
 
     if (window.getSelection().toString()) {
-        var a = document.createElement('a');
-            a.href = 'https://pantuza.com';
-            window.getSelection().getRangeAt(0).surroundContents(a);
+
+        this.currentAnchor = document.createElement('a');
+        this.currentAnchor.target = "_blank";
+        window.getSelection().getRangeAt(0).surroundContents(this.currentAnchor);
+
+        this.setState({
+          anchor: true
+        });
     }
+
     event.preventDefault();
+  }
+
+
+  /**
+   * Sets the current anchor url based on input url
+   */
+  setLinkUrl (event) {
+
+      const url = event.target.value;
+      this.currentAnchor.href = url;
+      event.target.remove()
+      this.currentAnchor = undefined;
+
+      this.setState({
+        anchor: false
+      });
+
+      event.stopPropagation();
   }
 
   change (event) {
     this.setState({value: event.target.value});
+
+    let input = document.getElementById("paragraph-" + this.props.order);
+    input.value = event.target.innerHTML;
   }
 
+
+  /**
+   * Allows paragraph div edition
+   */
   allowEdition (event) {
-    event.target.contentEditable = true;
+
+    const element = event.target;
+    if(!element.isContentEditable) {
+
+        element.contentEditable = true;
+        element.style.backgroundColor = "#111";
+    }
   }
 
+
+  /**
+   * Closes paragraph div edition
+   */
   closeEdition (event) {
-    event.target.contentEditable = false;
+
+    const element = event.target;
+    if(element.isContentEditable) {
+
+        element.contentEditable = false;
+        element.style.backgroundColor = "black";
+    }
   }
+
 
   render () {
+
+    let anchor = "";
+    if(this.state.anchor) {
+        anchor = (
+          <input
+            className="anchor-input"
+            type="url"
+            autoFocus
+            onBlur={this.setLinkUrl.bind(this)}
+            name="anchor-input-url" />
+        );
+    }
 
     const form = (
       <p className="paragraph-block-form">
@@ -88,16 +149,21 @@ class ParagraphBlock extends React.Component {
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
           onChange={this.change.bind(this)}
+          onInput={this.change.bind(this)}
           onClick={this.allowEdition.bind(this)}
-          onBlur={this.closeEdition.bind(this)}
-          name={"article[blocks][" + this.props.order + "][paragraph]"}>
+          onBlur={this.closeEdition.bind(this)}>
           {this.state.value}
         </div>
+        {anchor}
+        <input
+          type="hidden"
+          id={"paragraph-" + this.props.order}
+          name={"article[blocks][" + this.props.order + "][paragraph]"} />
       </p>
     );
 
     const paragraph = (
-      <p className="published">{this.state.value}</p>
+      <p className="published" dangerouslySetInnerHTML={{__html: this.state.value}} />
     );
 
     if(this.state.published) {
