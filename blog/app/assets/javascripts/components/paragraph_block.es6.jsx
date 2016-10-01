@@ -11,7 +11,8 @@ class ParagraphBlock extends React.Component {
       published: this.props.published || false,
       ctrlPressed: false,
       anchor: false,
-      value: this.props.text || ""
+      value: this.props.text || "",
+      focus: false
     }
 
     this.CTRL = 17;
@@ -84,15 +85,15 @@ class ParagraphBlock extends React.Component {
       this.currentAnchor = undefined;
 
       this.setState({
-        anchor: false
+        anchor: false,
       });
 
+      const div = document.getElementById("div-paragraph-" + this.props.order);
+      div.focus();
       event.stopPropagation();
   }
 
   change (event) {
-    this.setState({value: event.target.value});
-
     let input = document.getElementById("paragraph-" + this.props.order);
     input.value = event.target.innerHTML;
   }
@@ -145,10 +146,10 @@ class ParagraphBlock extends React.Component {
         <BlockRemove class="paragraph-block-remove" clickHandler={this.props.removeCallback}/>
         <label>Paragraph</label>
         <div
+          id={"div-paragraph-" + this.props.order}
           className="unpublished"
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
-          onChange={this.change.bind(this)}
           onInput={this.change.bind(this)}
           onClick={this.allowEdition.bind(this)}
           onBlur={this.closeEdition.bind(this)}
