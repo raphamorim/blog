@@ -16,17 +16,23 @@
 
 @import "social-share-button";
 
+
 body {
     height: 100%;
     background-color: black;
 
     a {
         text-decoration: none;
+        color: cyan;
     }
 
     main {
         min-height: 500px;
     }
+
+    font-family: "Helvetica", "Arial", sans-serif;
+    line-height: 1.5;
+    padding: 4em 1em;
 }
 
 

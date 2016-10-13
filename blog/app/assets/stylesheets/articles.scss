@@ -16,12 +16,6 @@
     .left {
         float: left;
         width: 280px;
-        figure {
-            width: 200px;
-            height: 200px;
-            img {
-            }
-        }
 
         .add-cover {
 
@@ -170,6 +164,24 @@
             }
         }
 
+        div.unpublished {
+
+            color: white;
+            width: 60%;
+            min-height: 100px;
+            position: relative;
+            left: 20%;
+            text-align: justify;
+            font-weight: lighter;
+            letter-spacing: 1px;
+        }
+
+        .anchor-input {
+
+            width: 30%;
+            color: cyan;
+            border-color: white;
+        }
 
         textarea {
             color: white;
@@ -228,18 +240,15 @@
     margin-top: 2%;
 
     article {
+        width: 60%;
+		position: relative;
+		left: 20%;
 
         #article-top-ads {
 
-            position: relative;
-            left: 2%;
         }
 
         header {
-
-            position: relative;
-            width: 65%;
-            left: 18%;
 
             h1 {
                 font-size: 40px;
@@ -257,11 +266,12 @@
                 font-style: italic;
                 position: relative;
                 bottom: 35px;
+                letter-spacing: 1px;
+                font-weight: lighter;
             }
 
             time {
                 position: relative;
-                margin: 2%;
                 padding-top: 2%;
                 padding-bottom: 2%;
                 color: gray;
@@ -286,41 +296,32 @@
             padding-bottom: 2%;
 
             * {
-                padding-top: 1%;
-                padding-bottom: 1%;
+                padding-top: 2%;
+                padding-bottom: 2%;
             }
 
             p {
                 color: #BBB;
-                position: relative;
-                width: 65%;
-                left: 20%;
                 text-align: justify;
                 font-family: sans-serif;
                 font-size: large;
                 letter-spacing: 1px;
+                font-weight: lighter;
             }
 
             pre {
-                width: 65%;
-                position: relative;
                 margin: auto;
                 border: 1px solid blue;
                 border-radius: 3px;
-                left: 2%;
             }
 
             .video-block {
-                width: 60%;
-                position: relative;
                 margin: auto;
                 text-align: center;
                 padding-top: 2%;
             }
 
             .photo-block-show img {
-                position: relative;
-                left: 20%;
             }
 
             #ytplayer {
@@ -330,9 +331,6 @@
     }
 
     .author {
-        position: relative;
-        width: 60%;
-        left: 20%;
         padding-bottom: 2%;
 
         .author-info {
@@ -385,9 +383,6 @@
 
         .social-share-button {
 
-            position: relative;
-            width: 60%;
-            left: 20%;
             padding-bottom: 2%;
 
             .ssb-icon {
@@ -399,9 +394,9 @@
     }
 
     #disqus_thread {
-        width: 60%;
-        position: relative;
-        left: 20%;
         margin-top: 5%;
+        position: relative;
+        width: 60%;
+        left: 20%;
     }
 }

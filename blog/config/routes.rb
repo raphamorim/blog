@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :articles
+  resources :articles, :path => "artigos"
   resources :tags
 
   root 'home#index'
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get '/search' => 'articles#search'
 
   # cover upload
-  post 'articles/cover' => 'articles#upload_cover'
+  post 'artigos/cover' => 'articles#upload_cover'
 
   # blog routes
   get 'home/index'

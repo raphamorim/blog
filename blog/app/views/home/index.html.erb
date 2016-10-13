@@ -1,3 +1,6 @@
+
+<% content_for :title, "Gustavo Pantuza - Blog" %>
+
 <%= link_to 'Lista de posts', controller: 'articles' %>
 <% if current_user %>
     <%= link_to 'New article', new_article_path %>

@@ -7,41 +7,17 @@ class ParagraphBlock extends React.Component {
   constructor (props) {
     super(props);
 
-    this.styles = {
-      NONE: 0,
-      BOLD: 1,
-      ITALIC: 2
-    }
-
-    let published = false;
-    if (typeof this.props.text == "string" && this.props.text.length > 0) {
-      published = true;
-    }
-
     this.state = {
-      published: published,
+      published: this.props.published || false,
       ctrlPressed: false,
-
-      textStyle: this.styles.NONE,
-      value: ""
+      anchor: false,
+      value: this.props.text || "",
+      focus: false
     }
 
-    /* Key Codes */
     this.CTRL = 17;
-    this.B = 66;
-    this.I = 73;
-
-    /* Tag bold symbols */
-    this.boldTags = {
-      OPEN: "<b>",
-      CLOSE: "</b>"
-    }
-
-    /* Tag italic symbols */
-    this.italicTags = {
-      OPEN: "<i>",
-      CLOSE: "</i>"
-    }
+    this.L = 76;
+    this.currentAnchor = undefined;
   }
 
   /**
@@ -63,123 +39,131 @@ class ParagraphBlock extends React.Component {
    */
   handleKeyUp (event) {
 
+    event.preventDefault();
+
     const key = event.keyCode;
-    const start = event.target.selectionStart;
-    const end = event.target.selectionEnd;
+    const selection = window.getSelection();
+    const start = selection.anchorOffset;
+    const end = selection.focusOffset;
 
-    if(key == this.B && this.state.ctrlPressed) {
-      this.setStyle(start, end, event, this.boldTags);
-
-    } else if(key == this.I && this.state.ctrlPressed) {
-      this.setStyle(start, end, event, this.italicTags);
-
+    if(key == this.L && this.state.ctrlPressed) {
+      this.insertLinkInput(event);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
   }
 
-  /**
-   * Verifies the current style and sets new one
-   */
-  checkStyle (data, tagType) {
-
-    const current = this.state.textStyle;
-
-    if(current == this.styles.BOLD || current == this.styles.ITALIC) {
-      data.tag = tagType.CLOSE;
-      data.newStyle = this.styles.NONE;
-      data.length = 4;
-    }
-  }
 
   /**
-   * Open or close tags at cursor place
+   * Inserts tag a after paragraph to use as link url
    */
-  openOrCloseTag(data, start, end) {
+  insertLinkInput (event) {
 
-    /* Appends tag on text */
-    data.newValue += data.tag;
+    if (window.getSelection().toString()) {
 
-    /* Inserts tag in the middle of a text */
-    if(end < this.state.value.length) {
+        this.currentAnchor = document.createElement('a');
+        this.currentAnchor.target = "_blank";
+        window.getSelection().getRangeAt(0).surroundContents(this.currentAnchor);
 
-      const before = this.state.value.substring(0, start);
-      const after = this.state.value.substring(end);
-
-      data.newValue = before + data.tag + after;
-      data.length = data.tag.length;
-    }
-  }
-
-  /**
-   * Wraps selected text with the tag type (bold or italic)
-   */
-  wrapSelectionWithTag (data, start, end, tagType) {
-
-    const before = this.state.value.substring(0, start) + data.tag;
-    const current = this.state.value.substring(start, end);
-    let after = this.state.value.substring(end) + tagType.CLOSE;
-
-    if(end < this.state.value.length)
-      data.after = tagType.CLOSE + this.state.value.substring(end);
-
-    data.newValue = before + current + after;
-    data.newStyle = this.styles.NONE;
-  }
-
-  /**
-   * Sets the style of the current selection or open/close bold or italic tags
-   */
-  setStyle (start, end, event, tagType) {
-
-    let data = {
-      tag: tagType.OPEN,
-      newStyle: (tagType==this.boldTags)? this.styles.BOLD: this.styles.ITALIC,
-      newValue: this.state.value,
-      length: 3,
-    };
-
-    this.checkStyle(data, tagType);
-
-    if(start == end) {
-      this.openOrCloseTag(data, start, end);
-
-    } else {
-      this.wrapSelectionWithTag(data, start, end, tagType);
+        this.setState({
+          anchor: true
+        });
     }
 
-    this.setState({
-      value: data.newValue,
-      textStyle: data.newStyle
-    });
-
-    event.target.selectionEnd += data.length;
     event.preventDefault();
   }
 
-  change (event) {
-    this.setState({value: event.target.value});
+
+  /**
+   * Sets the current anchor url based on input url
+   */
+  setLinkUrl (event) {
+
+      const url = event.target.value;
+      this.currentAnchor.href = url;
+      event.target.remove()
+      this.currentAnchor = undefined;
+
+      this.setState({
+        anchor: false,
+      });
+
+      const div = document.getElementById("div-paragraph-" + this.props.order);
+      div.focus();
+      event.stopPropagation();
   }
 
+  change (event) {
+    let input = document.getElementById("paragraph-" + this.props.order);
+    input.value = event.target.innerHTML;
+  }
+
+
+  /**
+   * Allows paragraph div edition
+   */
+  allowEdition (event) {
+
+    const element = event.target;
+    if(!element.isContentEditable) {
+
+        element.contentEditable = true;
+        element.style.backgroundColor = "#111";
+    }
+  }
+
+
+  /**
+   * Closes paragraph div edition
+   */
+  closeEdition (event) {
+
+    const element = event.target;
+    if(element.isContentEditable) {
+
+        element.contentEditable = false;
+        element.style.backgroundColor = "black";
+    }
+  }
+
+
   render () {
+
+    let anchor = "";
+    if(this.state.anchor) {
+        anchor = (
+          <input
+            className="anchor-input"
+            type="url"
+            autoFocus
+            onBlur={this.setLinkUrl.bind(this)}
+            name="anchor-input-url" />
+        );
+    }
 
     const form = (
       <p className="paragraph-block-form">
         <BlockRemove class="paragraph-block-remove" clickHandler={this.props.removeCallback}/>
         <label>Paragraph</label>
-        <textarea rows="5"
-                  columns="60"
-                  onKeyDown={this.handleKeyDown.bind(this)}
-                  onKeyUp={this.handleKeyUp.bind(this)}
-                  onChange={this.change.bind(this)}
-                  value={this.state.value}
-                  name={"article[blocks][" + this.props.order + "][paragraph]"}>
-        </textarea>
+        <div
+          id={"div-paragraph-" + this.props.order}
+          className="unpublished"
+          onKeyDown={this.handleKeyDown.bind(this)}
+          onKeyUp={this.handleKeyUp.bind(this)}
+          onInput={this.change.bind(this)}
+          onClick={this.allowEdition.bind(this)}
+          onBlur={this.closeEdition.bind(this)}
+          dangerouslySetInnerHTML={{__html: this.state.value}} />
+        {anchor}
+        <input
+          type="hidden"
+          id={"paragraph-" + this.props.order}
+          name={"article[blocks][" + this.props.order + "][paragraph]"} />
       </p>
     );
 
     const paragraph = (
-      <p className="published">{this.props.text}</p>
+      <p className="published" dangerouslySetInnerHTML={{__html: this.state.value}} />
     );
 
     if(this.state.published) {
