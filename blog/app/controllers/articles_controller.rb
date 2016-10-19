@@ -90,21 +90,10 @@ class ArticlesController < ApplicationController
     def article_params
       logger.debug "#{params[:article][:blocks]}"
       upload_photo
-      # params[:article][:blocks] = normalize_params
 
       params.require(:article).permit(
         :title, :subtitle, :abstract, :text, :cover, :all_tags, blocks: [:paragraph, :video, :photo, :code]
       )
-    end
-
-    def normalize_params()
-      ar = []
-      if params[:article][:blocks]
-        params[:article][:blocks].each do |key, value|
-          ar << Hash[key, value]
-        end
-      end
-      ar
     end
 
     def upload_photo()
