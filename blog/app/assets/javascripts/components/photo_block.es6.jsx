@@ -9,6 +9,7 @@ class PhotoBlock extends React.Component {
 
         file: undefined,
         imagePreviewURL: undefined,
+        imageAlt: undefined,
       }
 
       if (this.props.path && typeof this.props.path == "string") {
@@ -38,7 +39,8 @@ class PhotoBlock extends React.Component {
       preview = (
         <figure className="photo-preview">
             <img src={this.state.imagePreviewURL}
-                 width="60%" />
+                 width="60%"
+                 alt={this.state.imageAlt} />
         </figure>
       );
     }
@@ -52,13 +54,19 @@ class PhotoBlock extends React.Component {
                name={"article[blocks][" + this.props.order + "][photo]"}/>
         <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
         {preview}
+        <input
+            type="text"
+            name={"article[blocks][" + this.props.order + "][photo][alt]"} />
       </p>
     );
 
     const photo = (
         <picture className="photo-block-show" >
           <source srcset={this.state.imagePreviewURL} />
-          <img width="100%" src={this.state.imagePreviewURL} />
+          <img
+            width="100%"
+            src={this.state.imagePreviewURL}
+            alt={this.state.imageAlt} />
         </picture>
     );
 
