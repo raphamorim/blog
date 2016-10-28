@@ -81,7 +81,6 @@ class ParagraphBlock extends React.Component {
 
       const url = event.target.value;
       this.currentAnchor.href = url;
-      event.target.remove()
       this.currentAnchor = undefined;
 
       this.setState({
