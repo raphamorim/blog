@@ -2,6 +2,7 @@ require 'capistrano'
 
 after :deploy, "deploy:build"
 
+set :pty, true
 
 namespace :deploy do
 
@@ -11,12 +12,13 @@ namespace :deploy do
     on roles(:app) do
 
       puts "Uploading production environment.."
-      upload! 'config/deploy/production.env', "#{deploy_to}/current/blog/config/deploy/production.env"
-      upload! 'config/blog.pantuza.com.json', "#{deploy_to}/current/blog/config/blog.pantuza.com.json"
+      upload! 'config/deploy/production.env', "#{ENV['DEPLOY_PATH']}/current/blog/config/deploy/production.env"
+      upload! 'config/blog.pantuza.com.json', "#{ENV['DEPLOY_PATH']}/current/blog/config/blog.pantuza.com.json"
+    end
 
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
       puts "Running docker containers.."
-      sudo system("docker-compose up -d")
-      sudo system("docker ps --all")
+      execute "docker-compose --file #{ENV['DEPLOY_PATH']}/current/blog/docker-compose.yml up -d"
     end
   end
 
