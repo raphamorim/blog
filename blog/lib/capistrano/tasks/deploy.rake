@@ -50,7 +50,7 @@ namespace :deploy do
   task :assets do
     on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
       puts "Compiling assets on application container.."
-      execute "docker exec -it blog_app  rake assets:precompile RAILS_ENV=production"
+      execute "docker exec -it blog_app rake assets:precompile RAILS_ENV=production"
     end
   end
 
@@ -58,7 +58,7 @@ namespace :deploy do
   task :logs do
     on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
       puts "Printing logs from application container.."
-      execute "docker logs blog_app"
+      execute "docker logs --tail 100 blog_app"
     end
   end
 end
