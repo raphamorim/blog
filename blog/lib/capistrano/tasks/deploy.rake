@@ -24,10 +24,18 @@ namespace :deploy do
 
   desc "Starts all containers using docker-compose"
   task :start do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Starting all docker containers.."
+      execute "docker-compose --file #{ENV['DEPLOY_PATH']}/current/blog/docker-compose.yml up -d"
+    end
   end
 
   desc "Stops all containers using docker-compose"
   task :stop do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Stoping all docker containers.."
+      execute "docker-compose --file #{ENV['DEPLOY_PATH']}/current/blog/docker-compose.yml down"
+    end
   end
 
   desc "Restarts all containers using docker-compose"
