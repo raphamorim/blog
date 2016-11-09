@@ -32,5 +32,9 @@ namespace :deploy do
 
   desc "Restarts all containers using docker-compose"
   task :restart do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Restarting all docker containers.."
+      execute "docker-compose --file #{ENV['DEPLOY_PATH']}/current/blog/docker-compose.yml restart"
+    end
   end
 end
