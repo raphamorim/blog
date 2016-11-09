@@ -108,21 +108,23 @@ class ArticlesController < ApplicationController
     end
 
     def upload_photo()
-      params[:article][:blocks].each do |key, hash|
+      if params[:article][:blocks]
+        params[:article][:blocks].each do |key, hash|
 
-        if hash.key?(:photo)
+          if hash.key?(:photo)
 
-          path_prefix = "uploads"
-          uploaded_io = params[:article][:blocks][key][:photo]
-          name = uploaded_io.original_filename
-          digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
-          path = Rails.root.join('public', path_prefix, digest)
+            path_prefix = "uploads"
+            uploaded_io = params[:article][:blocks][key][:photo]
+            name = uploaded_io.original_filename
+            digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
+            path = Rails.root.join('public', path_prefix, digest)
 
-          File.open(path, 'wb') do |file|
-            file.write(uploaded_io.read)
+            File.open(path, 'wb') do |file|
+              file.write(uploaded_io.read)
+            end
+
+            params[:article][:blocks][key][:photo] = "/" + path_prefix + "/" + digest
           end
-
-          params[:article][:blocks][key][:photo] = "/" + path_prefix + "/" + digest
         end
       end
     end
