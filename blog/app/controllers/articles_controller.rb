@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :upload_cover
 
   def index
-    @articles = Article.all
+    @articles = Article.order("id DESC").all
   end
 
   def new
