@@ -157,7 +157,8 @@ class ParagraphBlock extends React.Component {
         <input
           type="hidden"
           id={"paragraph-" + this.props.order}
-          name={"article[blocks][" + this.props.order + "][paragraph]"} />
+          name={"article[blocks][" + this.props.order + "][paragraph]"}
+          value={this.state.value} />
       </p>
     );
 
