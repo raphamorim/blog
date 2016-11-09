@@ -83,12 +83,16 @@ class ParagraphBlock extends React.Component {
       this.currentAnchor.href = url;
       this.currentAnchor = undefined;
 
+      const div = document.getElementById("div-paragraph-" + this.props.order);
+
       this.setState({
         anchor: false,
+        value: div.innerHTML,
       });
 
-      const div = document.getElementById("div-paragraph-" + this.props.order);
+      div.click();
       div.focus();
+
       event.stopPropagation();
   }
 
