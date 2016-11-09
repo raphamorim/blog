@@ -45,4 +45,20 @@ namespace :deploy do
       execute "docker-compose --file #{ENV['DEPLOY_PATH']}/current/blog/docker-compose.yml restart"
     end
   end
+
+  desc "Compile blog assets.."
+  task :assets do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Compiling assets on application container.."
+      execute "docker exec -it blog_app  rake assets:precompile RAILS_ENV=production"
+    end
+  end
+
+  desc "Show application logs.."
+  task :logs do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Printing logs from application container.."
+      execute "docker logs blog_app"
+    end
+  end
 end
