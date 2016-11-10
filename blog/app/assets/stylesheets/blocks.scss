@@ -99,11 +99,6 @@
 
         .paragraph-block-form {
 
-            textarea {
-                height: 100px;
-                font-size: medium;
-            }
-
             .paragraph-block-remove {
                 float: right;
                 right: 20%;
@@ -117,6 +112,14 @@
             font-weight: bold;
             font-size: small;
             cursor: pointer;
+        }
+
+        .paragraph-title {
+
+            letter-spacing: 3px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 0px;
         }
     }
 }
