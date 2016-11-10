@@ -84,10 +84,30 @@ class ParagraphBlock extends React.Component {
 
       var titleElm = document.createElement("h3");
       titleElm.className = "paragraph-title";
+      titleElm.onblur = this.closeEdition;
+      titleElm.onclick = this.allowEdition;
 
       window.getSelection().getRangeAt(0).surroundContents(titleElm);
+      this.updateState();
 
       event.preventDefault();
+  }
+
+  /**
+   * Update paragraph div state
+   */
+  updateState () {
+
+
+      const div = document.getElementById("div-paragraph-" + this.props.order);
+
+      this.setState({
+        anchor: false,
+        value: div.innerHTML,
+      });
+
+      div.click();
+      div.focus();
   }
 
   /**
@@ -99,15 +119,7 @@ class ParagraphBlock extends React.Component {
       this.currentAnchor.href = url;
       this.currentAnchor = undefined;
 
-      const div = document.getElementById("div-paragraph-" + this.props.order);
-
-      this.setState({
-        anchor: false,
-        value: div.innerHTML,
-      });
-
-      div.click();
-      div.focus();
+      this.updateState();
 
       event.stopPropagation();
   }
