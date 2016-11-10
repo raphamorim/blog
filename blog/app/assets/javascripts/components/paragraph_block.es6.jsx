@@ -17,6 +17,7 @@ class ParagraphBlock extends React.Component {
 
     this.CTRL = 17;
     this.L = 76;
+    this.T = 84;
     this.currentAnchor = undefined;
   }
 
@@ -48,6 +49,8 @@ class ParagraphBlock extends React.Component {
 
     if(key == this.L && this.state.ctrlPressed) {
       this.insertLinkInput(event);
+    } else if (key == this.T && this.state.ctrlPressed) {
+      this.insertTitle(event);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
@@ -73,6 +76,19 @@ class ParagraphBlock extends React.Component {
     event.preventDefault();
   }
 
+
+  /**
+   * Inserts a title using tag bold with styles
+   */
+  insertTitle (event) {
+
+      var titleElm = document.createElement("h3");
+      titleElm.className = "paragraph-title";
+
+      window.getSelection().getRangeAt(0).surroundContents(titleElm);
+
+      event.preventDefault();
+  }
 
   /**
    * Sets the current anchor url based on input url
