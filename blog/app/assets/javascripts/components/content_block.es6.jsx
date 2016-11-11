@@ -19,6 +19,7 @@ class ContentBlock extends React.Component {
 
     if(this.props.contentBlocks &&
        Object.keys(this.props.contentBlocks).length > 0) {
+      console.log(this.props.contentBlocks);
       this.createComponents();
     }
   }
@@ -49,7 +50,7 @@ class ContentBlock extends React.Component {
       case "photo":
         component = <PhotoBlock
                       key={index}
-                      path={value}
+                      photo={value}
                       order={this.state.nextOrder}
                       removeCallback={this.deleteBlock.bind(this, index)}
                       published={this.state.published} />;
