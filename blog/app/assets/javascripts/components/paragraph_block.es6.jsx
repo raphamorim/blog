@@ -17,6 +17,7 @@ class ParagraphBlock extends React.Component {
 
     this.CTRL = 17;
     this.L = 76;
+    this.T = 84;
     this.currentAnchor = undefined;
   }
 
@@ -48,6 +49,8 @@ class ParagraphBlock extends React.Component {
 
     if(key == this.L && this.state.ctrlPressed) {
       this.insertLinkInput(event);
+    } else if (key == this.T && this.state.ctrlPressed) {
+      this.insertTitle(event);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
     }
@@ -75,21 +78,49 @@ class ParagraphBlock extends React.Component {
 
 
   /**
+   * Inserts a title using tag bold with styles
+   */
+  insertTitle (event) {
+
+      var titleElm = document.createElement("h3");
+      titleElm.className = "paragraph-title";
+      titleElm.onblur = this.closeEdition;
+      titleElm.onclick = this.allowEdition;
+
+      window.getSelection().getRangeAt(0).surroundContents(titleElm);
+      this.updateState();
+
+      event.preventDefault();
+  }
+
+  /**
+   * Update paragraph div state
+   */
+  updateState () {
+
+
+      const div = document.getElementById("div-paragraph-" + this.props.order);
+
+      this.setState({
+        anchor: false,
+        value: div.innerHTML,
+      });
+
+      div.click();
+      div.focus();
+  }
+
+  /**
    * Sets the current anchor url based on input url
    */
   setLinkUrl (event) {
 
       const url = event.target.value;
       this.currentAnchor.href = url;
-      event.target.remove()
       this.currentAnchor = undefined;
 
-      this.setState({
-        anchor: false,
-      });
+      this.updateState();
 
-      const div = document.getElementById("div-paragraph-" + this.props.order);
-      div.focus();
       event.stopPropagation();
   }
 
@@ -158,7 +189,8 @@ class ParagraphBlock extends React.Component {
         <input
           type="hidden"
           id={"paragraph-" + this.props.order}
-          name={"article[blocks][" + this.props.order + "][paragraph]"} />
+          name={"article[blocks][" + this.props.order + "][paragraph]"}
+          value={this.state.value} />
       </p>
     );
 
