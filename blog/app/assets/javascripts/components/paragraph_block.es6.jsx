@@ -17,7 +17,7 @@ class ParagraphBlock extends React.Component {
 
     this.CTRL = 17;
     this.L = 76;
-    this.T = 84;
+    this.M = 77;
     this.currentAnchor = undefined;
   }
 
@@ -49,7 +49,7 @@ class ParagraphBlock extends React.Component {
 
     if(key == this.L && this.state.ctrlPressed) {
       this.insertLinkInput(event);
-    } else if (key == this.T && this.state.ctrlPressed) {
+    } else if (key == this.M && this.state.ctrlPressed) {
       this.insertTitle(event);
     } else if (key == this.CTRL) {
       this.state.ctrlPressed = false;
@@ -135,12 +135,16 @@ class ParagraphBlock extends React.Component {
    */
   allowEdition (event) {
 
-    const element = event.target;
-    if(!element.isContentEditable) {
+    const paragraphDivSelector = "div-paragraph-" + this.props.order;
+    const paragraphDiv = document.getElementById(paragraphDivSelector);
 
-        element.contentEditable = true;
-        element.style.backgroundColor = "#111";
+    paragraphDiv.setAttribute("contenteditable", true);
+
+    for(var i=0; i < paragraphDiv.childNodes.length; i++) {
+        paragraphDiv.childNodes[i].setAttribute("contenteditable", true);
     }
+
+    paragraphDiv.style.backgroundColor = "#111";
   }
 
 
@@ -149,12 +153,16 @@ class ParagraphBlock extends React.Component {
    */
   closeEdition (event) {
 
-    const element = event.target;
-    if(element.isContentEditable) {
+    const paragraphDivSelector = "div-paragraph-" + this.props.order;
+    const paragraphDiv = document.getElementById(paragraphDivSelector);
 
-        element.contentEditable = false;
-        element.style.backgroundColor = "black";
+    paragraphDiv.removeAttribute("contenteditable");
+
+    for(var i=0; i < paragraphDiv.childNodes.length; i++) {
+        paragraphDiv.childNodes[i].removeAttribute("contenteditable");
     }
+
+    paragraphDiv.style.backgroundColor = "black";
   }
 
 
