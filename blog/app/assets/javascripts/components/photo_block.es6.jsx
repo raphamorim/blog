@@ -12,8 +12,15 @@ class PhotoBlock extends React.Component {
         imageAlt: undefined,
       }
 
-      if (this.props.path && typeof this.props.path == "string") {
-          this.state.imagePreviewURL = this.props.path;
+      if(this.props.photo) {
+
+          if (this.props.photo.path && typeof this.props.photo.path == "string") {
+              this.state.imagePreviewURL = this.props.photo.path;
+          }
+
+          if (this.props.photo.caption && typeof this.props.photo.caption == "string") {
+              this.state.imageAlt = this.props.photo.caption;
+          }
       }
   }
 
@@ -30,6 +37,21 @@ class PhotoBlock extends React.Component {
     }
 
     reader.readAsDataURL(file);
+  }
+
+  /**
+   * The form is correct. Rails does not put alt tag in its class for uploading
+   * files
+   */
+  fillImageAlt(event) {
+
+      const alternate = event.target.value;
+
+      this.setState({
+        imageAlt: alternate
+      });
+
+      event.stopPropagation();
   }
 
   render () {
@@ -51,12 +73,15 @@ class PhotoBlock extends React.Component {
         <input type="file"
                accept="image/*"
                onChange={this.handleFileChoose.bind(this)}
-               name={"article[blocks][" + this.props.order + "][photo]"}/>
+               name={"article[blocks][" + this.props.order + "][photo]"}
+               alt={this.state.imageAlt} />
         <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
         {preview}
         <input
             type="text"
-            name={"article[blocks][" + this.props.order + "][photo][alt]"} />
+            name={"article[photo-" + this.props.order + "-alt]"}
+            onBlur={this.fillImageAlt.bind(this)}
+            value={this.state.imageAlt} />
       </p>
     );
 
