@@ -102,19 +102,28 @@ class ArticlesController < ApplicationController
 
           if hash.key?(:photo)
 
-            path_prefix = "uploads"
-            uploaded_io = params[:article][:blocks][key][:photo]
-            name = uploaded_io.original_filename
-            digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
-            path = Rails.root.join('public', path_prefix, digest)
+            image_path = params[:article][:blocks][key][:photo]
 
-            File.open(path, 'wb') do |file|
-              file.write(uploaded_io.read)
+            if not params[:article][:blocks][key][:photo].is_a? String
+
+              path_prefix = "uploads"
+              uploaded_io = params[:article][:blocks][key][:photo]
+              name = uploaded_io.original_filename
+              digest = Digest::SHA1.hexdigest("#{name}-{Time.now.to_i}")
+              path = Rails.root.join('public', path_prefix, digest)
+
+              File.open(path, 'wb') do |file|
+                file.write(uploaded_io.read)
+              end
+
+              image_path = "/" + path_prefix + "/" + digest
             end
+
             new_value = {
-              "path" => "/" + path_prefix + "/" + digest,
+              "path" => image_path,
               "caption" => params[:article]["photo-" + key + "-alt"]
             }
+
             params[:article].delete("photo-" + key + "-alt")
             params[:article][:blocks][key][:photo] = new_value
           end
