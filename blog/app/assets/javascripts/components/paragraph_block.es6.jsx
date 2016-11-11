@@ -141,7 +141,11 @@ class ParagraphBlock extends React.Component {
     paragraphDiv.setAttribute("contenteditable", true);
 
     for(var i=0; i < paragraphDiv.childNodes.length; i++) {
-        paragraphDiv.childNodes[i].setAttribute("contenteditable", true);
+
+        const element = paragraphDiv.childNodes[i];
+        if(element.nodeType === Node.ELEMENT_NODE) {
+            element.setAttribute("contenteditable", true);
+        }
     }
 
     paragraphDiv.style.backgroundColor = "#111";
@@ -159,7 +163,11 @@ class ParagraphBlock extends React.Component {
     paragraphDiv.removeAttribute("contenteditable");
 
     for(var i=0; i < paragraphDiv.childNodes.length; i++) {
-        paragraphDiv.childNodes[i].removeAttribute("contenteditable");
+
+        const element = paragraphDiv.childNodes[i];
+        if(element.nodeType === Node.ELEMENT_NODE) {
+            element.removeAttribute("contenteditable");
+        }
     }
 
     paragraphDiv.style.backgroundColor = "black";
