@@ -92,7 +92,7 @@ class ArticlesController < ApplicationController
       upload_photo
 
       params.require(:article).permit(
-        :title, :subtitle, :abstract, :text, :cover, :all_tags, blocks: [:paragraph, :video, :photo, :code]
+        :title, :subtitle, :abstract, :text, :cover, :all_tags, blocks: [:paragraph, :video, :code, photo: [:path, :caption]]
       )
     end
 
@@ -111,8 +111,12 @@ class ArticlesController < ApplicationController
             File.open(path, 'wb') do |file|
               file.write(uploaded_io.read)
             end
-
-            params[:article][:blocks][key][:photo] = "/" + path_prefix + "/" + digest
+            new_value = {
+              "path" => "/" + path_prefix + "/" + digest,
+              "caption" => params[:article]["photo-" + key + "-alt"]
+            }
+            params[:article].delete("photo-" + key + "-alt")
+            params[:article][:blocks][key][:photo] = new_value
           end
         end
       end
