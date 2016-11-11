@@ -8,6 +8,7 @@ class PhotoBlock extends React.Component {
         published: this.props.published || false,
 
         file: undefined,
+        imageUrl: undefined,
         imagePreviewURL: undefined,
         imageAlt: undefined,
       }
@@ -15,7 +16,8 @@ class PhotoBlock extends React.Component {
       if(this.props.photo) {
 
           if (this.props.photo.path && typeof this.props.photo.path == "string") {
-              this.state.imagePreviewURL = this.props.photo.path;
+              this.state.imageUrl = this.props.photo.path;
+              this.state.imagePreviewURL= this.state.imageUrl;
           }
 
           if (this.props.photo.caption && typeof this.props.photo.caption == "string") {
@@ -67,14 +69,28 @@ class PhotoBlock extends React.Component {
       );
     }
 
-    const form = (
-      <p className="photo-block-form">
-        <label>Add photo</label>
+    let formFileInput = (
+
         <input type="file"
                accept="image/*"
                onChange={this.handleFileChoose.bind(this)}
                name={"article[blocks][" + this.props.order + "][photo]"}
                alt={this.state.imageAlt} />
+    );
+
+    if(this.state.imageUrl) {
+
+        formFileInput = (
+            <input type="text"
+                   name={"article[blocks][" + this.props.order + "][photo]"}
+                   value={this.state.imagePreviewURL} readonly />
+        );
+    }
+
+    const form = (
+      <p className="photo-block-form">
+        <label>Add photo</label>
+        {formFileInput}
         <BlockRemove class="photo-block-remove" clickHandler={this.props.removeCallback}/>
         {preview}
         <input
