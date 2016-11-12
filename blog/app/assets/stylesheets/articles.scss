@@ -235,6 +235,8 @@
 
 /* Show article */
 
+$code_bg: #111;
+
 .article-show {
 
     margin-top: 2%;
@@ -313,6 +315,11 @@
                 margin: auto;
                 border: 1px solid blue;
                 border-radius: 3px;
+                background: $code_bg;
+
+                code {
+                    background: $code_bg;
+                }
             }
 
             .video-block {
