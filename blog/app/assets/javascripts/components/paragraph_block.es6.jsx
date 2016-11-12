@@ -211,7 +211,7 @@ class ParagraphBlock extends React.Component {
     );
 
     const paragraph = (
-      <p className="published" dangerouslySetInnerHTML={{__html: this.state.value}} />
+      <p className="published content-paragraph" dangerouslySetInnerHTML={{__html: this.state.value}} />
     );
 
     if(this.state.published) {
