@@ -16,7 +16,7 @@ class ParagraphBlock extends React.Component {
     }
 
     this.CTRL = 17;
-    this.L = 76;
+    this.COMMA = 188;
     this.M = 77;
     this.currentAnchor = undefined;
   }
@@ -47,7 +47,7 @@ class ParagraphBlock extends React.Component {
     const start = selection.anchorOffset;
     const end = selection.focusOffset;
 
-    if(key == this.L && this.state.ctrlPressed) {
+    if(key == this.COMMA && this.state.ctrlPressed) {
       this.insertLinkInput(event);
     } else if (key == this.M && this.state.ctrlPressed) {
       this.insertTitle(event);
