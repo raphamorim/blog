@@ -22,3 +22,5 @@
 *.env
 
 blog.pantuza.com.json
+
+app/views/static/google*
