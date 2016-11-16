@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/google(*g_hash)', to: 'static#google'
+
   get 'talks/index'
 
   get 'talks/new'
