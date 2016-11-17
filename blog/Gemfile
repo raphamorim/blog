@@ -71,4 +71,4 @@ gem 'redis'
 gem 'google-api-client'
 
 # Dynamic sitemaps
-gem "dynamic_sitemaps"
+gem 'dynamic_sitemaps', :git => 'git://github.com/lassebunk/dynamic_sitemaps.git'
