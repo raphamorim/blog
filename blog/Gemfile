@@ -69,3 +69,6 @@ gem 'redis'
 
 # Google analytics api client
 gem 'google-api-client'
+
+# Dynamic sitemaps
+gem "dynamic_sitemaps"
