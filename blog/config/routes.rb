@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   # blog routes
   get 'home/index'
 
-  get 'feed' => 'articles#feed'
+  get 'feed', to: 'articles#feed', as: :feed
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
