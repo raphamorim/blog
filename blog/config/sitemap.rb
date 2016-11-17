@@ -1,5 +1,6 @@
 # Change this to your host. See the readme at https://github.com/lassebunk/dynamic_sitemaps
 # for examples of multiple hosts and folders.
+protocol "https"
 host "blog.pantuza.com"
 
 sitemap :site do
@@ -15,9 +16,12 @@ end
 # using "resources :pages" in config/routes.rb. This will also
 # automatically set <lastmod> to the date and time in page.updated_at:
 #
-sitemap_for Article.all
 sitemap_for Tag.all do |tag|
-  url tag_url(tag.name)
+  url tag_url(tag.name), last_mod: Time.now, change_freq: "weekly", priority: 0.7
+end
+
+sitemap_for Article.all do |article|
+  url article_url(article), last_mod: article.updated_at, change_freq: "monthly", priority: 0.6
 end
 
 # For products with special sitemap name and priority, and link to comments:
@@ -43,4 +47,4 @@ end
 
 # Ping search engines after sitemap generation:
 #
-#ping_with "http://#{host}/sitemap.xml"
+ping_with "#{protocol}://#{host}/sitemap.xml"
