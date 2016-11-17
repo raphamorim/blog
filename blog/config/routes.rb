@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   get '/google(*g_hash)', to: 'static#google'
 
+  get "sitemap.xml" => "static#sitemap", format: :xml, as: :sitemap
+
+  get "robots.txt" => "static#robots", format: :text, as: :robots
+
   get 'talks/index'
 
   get 'talks/new'
