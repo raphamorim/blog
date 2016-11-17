@@ -14,6 +14,7 @@ namespace :deploy do
       puts "Uploading production environment.."
       upload! 'config/deploy/production.env', "#{ENV['DEPLOY_PATH']}/current/blog/config/deploy/production.env"
       upload! 'config/blog.pantuza.com.json', "#{ENV['DEPLOY_PATH']}/current/blog/config/blog.pantuza.com.json"
+      upload! "app/views/static/#{ENV['DEPLOY_GOOGLE_SITE']}", "#{ENV['DEPLOY_PATH']}/current/blog/app/views/static/#{ENV['DEPLOY_GOOGLE_SITE']}"
     end
 
     on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
