@@ -24,3 +24,7 @@
 blog.pantuza.com.json
 
 app/views/static/google*
+
+sitemap.xml
+sitemaps/*
+!sitemaps/.gitkeep
