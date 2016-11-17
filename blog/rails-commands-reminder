@@ -15,3 +15,4 @@ rake users:encrypt_password
 rails destroy model comments
 rails destroy controller comments
 rails generate social_share_button:install
+rails generate dynamic_sitemaps:install
