@@ -62,4 +62,12 @@ namespace :deploy do
       execute "docker logs --tail 100 blog_app"
     end
   end
+
+  desc "Generate blog sitemap.."
+  task :logs do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Generating blog sitemap.."
+      execute "docker exec -it blog_app rake sitemap:generate"
+    end
+  end
 end
