@@ -5,6 +5,6 @@ class HomeController < ApplicationController
   def index
     @last_articles = Article.last(8)
     @top_articles = get_top_articles()
-    @recommended = recommendation()
+    @recommended = recommendation()[0, 4]
   end
 end
