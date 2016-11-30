@@ -33,15 +33,15 @@ module UsersHelper
       articles = $redis.smembers(location)
       articles.each do |json_article|
         article = Article.new
-        recommended.append(article.from_json(json_article))
+        recommended.push(article.from_json(json_article))
       end
     else
       result = request_analytics_by_location(location)
       result.rows.each do |row|
-        if row[1].include? "/articles/" and not row[1].include? "/articles/new"
-          article = Article.find_by_permalink(row[1].split("/articles/")[-1].split("/")[0])
+        if row[1].include? "/artigos/" and not row[1].include? "/artigos/new"
+          article = Article.find_by_permalink(row[1].split("/artigos/")[-1].split("/")[0])
           if article
-            recommended.append(article)
+            recommended.push(article)
             $redis.sadd(location, article.to_json)
           end
         end
@@ -68,6 +68,7 @@ module UsersHelper
       start_date=startDate,
       end_date=endDate,
       metrics='ga:pageviews',
+      :max_results => 15,
       :dimensions => 'ga:pageTitle,ga:pagePath',
       :sort => '-ga:pageviews',
       :filters => "ga:country==#{country},ga:region==#{region}"
