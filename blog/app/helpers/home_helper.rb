@@ -22,6 +22,7 @@ module HomeHelper
       start_date=@startDate,
       end_date=@endDate,
       metrics='ga:pageviews',
+      :max_results => 15,
       :dimensions => 'ga:pageTitle,ga:pagePath',
       :sort => '-ga:pageviews'
     )
@@ -42,7 +43,7 @@ module HomeHelper
     else
       result = request_analytics_top_articles()
       result.rows.each do |row|
-        if row[1].include? "/articles/" and not row[1].include? "/articles/new"
+        if row[1].include? "/artigos/" and not row[1].include? "/artigos/new"
           article = Article.find_by_permalink(row[1].split("/articles/")[-1].split("/")[0])
           if article
             top_articles.append(article)
