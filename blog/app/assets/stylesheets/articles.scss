@@ -9,85 +9,100 @@
 }
 
 .preview {
-    width: 60%;
-    position: relative;
-    left: 25%;
-
-    .left {
-        float: left;
-        width: 280px;
-
-        .add-cover {
-
-            text-align: center;
-            position: absolute;
-            width: 290px;
-            top: -5px;
-            color: #4d5f69;
-            font-weight: bold;
-            font-family: monospace;
-            font-size: small;
-            letter-spacing: 2px;
-        }
-
-        input[type=file] {
-            width: 160px;
-            position: relative;
-            left: -5px;
-        }
-
-        input[type=submit] {
-            position: relative;
-            left: -5px;
-        }
+    .action {
+        height: 50px;
     }
 
-    .right {
-        float: right;
-        width: 45%;
-        right: 20%;
-        position: relative;
-        header{
-            h1 {
-                text-align: left;
-                text-transform: uppercase;
-                font-family: monospace;
-                letter-spacing: 2px;
-                font-style: normal;
-            }
-        }
+    ul {
+        li {
+            height: 300px;
 
-        span {
-            color: white;
-            letter-spacing: 1px;
-            font-family: monospace;
-        }
-    }
+            .article-preview {
 
-    .bottom {
-        clear: both;
-        top: 10px;
-        position: relative;
-        ul {
-            height: 25px;
-            width: 200px;
-            bottom: 20px;
-            position: relative;
+                figure {
+                    width: 40%;
+                    margin: 0 auto;
+                }
 
-            li {
-                color: #4d5f69;
-                font-weight: bold;
-                font-family: monospace;
-                font-size: small;
-                letter-spacing: 2px;
-                list-style: none;
-            }
+                .add-cover {
+                    width: 45%;
+                    text-align: center;
+                    padding-left: 3%;
+                    color: #4d5f69;
+                    font-weight: bold;
+                    font-family: monospace;
+                    font-size: small;
+                    letter-spacing: 2px;
+                }
 
-            li:first-child {
-                float: left;
-            }
-            li:last-child {
-                float: right;
+                .left {
+                    float: left;
+                    width: 280px;
+                    padding-left: 10%;
+
+                    input[type=file] {
+                        width: 160px;
+                        position: relative;
+                        left: -5px;
+                    }
+
+                    input[type=submit] {
+                        position: relative;
+                        left: -5px;
+                    }
+                }
+
+                .right {
+                    float: right;
+                    width: 45%;
+                    right: 15%;
+                    position: relative;
+                    header{
+                        h1 {
+                            text-align: left;
+                            text-transform: uppercase;
+                            font-family: monospace;
+                            letter-spacing: 2px;
+                            font-style: normal;
+                        }
+                    }
+
+                    span {
+                        color: white;
+                        letter-spacing: 1px;
+                        font-family: monospace;
+                    }
+                }
+
+                .bottom {
+                    clear: both;
+                    top: 15px;
+                    position: relative;
+                    padding-left: 14%;
+                    ul {
+                        height: 25px;
+                        width: 200px;
+                        bottom: 20px;
+                        position: relative;
+
+                        li {
+                            max-height: 25px;
+                            color: #4d5f69;
+                            font-weight: bold;
+                            font-family: monospace;
+                            font-size: small;
+                            letter-spacing: 2px;
+                            list-style: none;
+                        }
+
+                        li:first-child {
+                            float: left;
+                        }
+                        li:last-child {
+                            float: right;
+                        }
+                    }
+                }
             }
         }
     }
