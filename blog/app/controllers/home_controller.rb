@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   include UsersHelper
 
   def index
-    @last_articles = Article.last(4)
+    @last_articles = Article.last(8)
     @top_articles = get_top_articles()
     @recommended = recommendation()
   end
