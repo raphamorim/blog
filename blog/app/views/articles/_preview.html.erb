@@ -1,46 +1,50 @@
+<ul id="articles-list" >
 <% @articles.each do |article| %>
 
-    <article class="preview">
-        <section class="left">
+    <li id="articles-list-item" >
+        <article class="article-preview">
             <% if current_user %>
               <%= react_component('ArticleCover', permalink: article.permalink) %>
             <% end %>
-            <%= link_to article_path(article) do %>
-                <figure>
-                    <img
-                        src="<%= article.cover %>"
-                        width="200"
-                        height="200"
-                        alt="" />
-                    <figcaption>
-                    </figcaption>
-                </figure>
-            <% end %>
-        </section>
-
-        <section class="right">
-
-            <%= link_to article_path(article) do %>
-                <header>
-                    <h1><%= article.title %></h1>
-                </header>
-                <span>
-                    <%= article.abstract %>
-                </span>
-            <% end %>
-        </section>
-
-        <% if current_user %>
-            <section class="bottom">
-                <ul>
-                    <li> <%= link_to 'Edit', edit_article_path(article) %></li>
-                    <li> <%= link_to 'Destroy', article_path(article),
-                          method: :delete,
-                          data: {
-                              confirm: 'Are you sure?' 
-                          } %></li>
-                </ul>
+            <section class="left">
+                <%= link_to article_path(article) do %>
+                    <figure>
+                        <img
+                            src="<%= article.cover %>"
+                            width="200"
+                            height="200"
+                            alt="" />
+                        <figcaption>
+                        </figcaption>
+                    </figure>
+                <% end %>
             </section>
-        <% end %>
-    </article>
+
+            <section class="right">
+
+                <%= link_to article_path(article) do %>
+                    <header>
+                        <h1><%= article.title %></h1>
+                    </header>
+                    <span>
+                        <%= article.abstract %>
+                    </span>
+                <% end %>
+            </section>
+
+            <% if current_user %>
+                <section class="bottom">
+                    <ul>
+                        <li> <%= link_to 'Edit', edit_article_path(article) %></li>
+                        <li> <%= link_to 'Destroy', article_path(article),
+                              method: :delete,
+                              data: {
+                                  confirm: 'Are you sure?' 
+                              } %></li>
+                    </ul>
+                </section>
+            <% end %>
+        </article>
+    </li>
 <% end %>
+</ul>
