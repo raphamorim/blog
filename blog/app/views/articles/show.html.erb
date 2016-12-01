@@ -1,4 +1,6 @@
 <% content_for :title, @article.title %>
+<% content_for :description, @article.abstract %>
+<% content_for :keywords, @article.tags.map(&:name).join(", ") %>
 
 <section class="article-show">
     <article role="article">
