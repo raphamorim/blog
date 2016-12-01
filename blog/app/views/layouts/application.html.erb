@@ -7,6 +7,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+  <meta name="description" content="<%= yield(:description) %>" />
+  <meta name="keywords" content="<%= yield(:keywords) %>" />
+
   <link rel="alternate" type="application/rss+xml" title="Gustavo Pantuza Blog RSS" href="https://blog.pantuza.com/feed?format=rss">
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
