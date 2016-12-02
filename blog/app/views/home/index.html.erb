@@ -52,7 +52,7 @@
             <ul class="left">
                 <% @top_articles.each_with_index do |article, index| %>
 
-                    <% if index == 2 %>
+                    <% if index == 2 or index == 4 or index == 6 %>
                         </ul>
                         <ul class="right">
                     <% end%>
@@ -118,13 +118,6 @@
                                     <figcaption>
                                     </figcaption>
                                 </figure>
-                                <div class="home-recommended-tags" >
-                                    <% article.tags.each do |tag| %>
-                                        <span>
-                                            <%= link_to tag.name, article_path(article) %>
-                                        </span> .
-                                    <% end %>
-                                </div>
                             <% end %>
                         </article>
                     </li>
@@ -157,7 +150,7 @@
                     <% article.tags.each do |tag| %>
                         <li>
                             <span>
-                                <%= link_to tag.name, article_path(article) %>
+                                <%= link_to tag.name, tag_path(tag) %>
                             </span> .
                         </li>
                     <% end %>
