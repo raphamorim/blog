@@ -146,4 +146,23 @@
         </script>
     </section>
 
+    <section id="recommended-tags">
+        <header class="recommended-tags-header">
+            <h3 class="atf-title">Assuntos recomendados</h3>
+        </header>
+        <section class="content-list home-recommended-tags">
+            <ul class="left">
+                <% @recommended.each do |article| %>
+
+                    <% article.tags.each do |tag| %>
+                        <li>
+                            <span>
+                                <%= link_to tag.name, article_path(article) %>
+                            </span> .
+                        </li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </section>
+    </section>
 </section>
