@@ -70,4 +70,11 @@ namespace :deploy do
       execute "docker exec -it blog_app rake sitemap:generate"
     end
   end
+
+  desc "Backup the blog database.."
+  task :dumpdb do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      execute "docker exec -it blog_db pg_dump -U #{ENV['DB_USER']} blog"
+    end
+  end
 end
