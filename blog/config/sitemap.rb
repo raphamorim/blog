@@ -5,9 +5,9 @@ host "blog.pantuza.com"
 
 sitemap :site do
   url root_url, last_mod: Time.now, change_freq: "daily", priority: 1.0
-  url articles_url, last_mod: Time.now, change_freq: "daily", priority: 0.8
-  url tags_url, last_mod: Time.now, change_freq: "daily", priority: 0.8
-  url feed_url, last_mod: Time.now, change_freq: "daily", priority: 0.8
+  url articles_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
+  url tags_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
+  url feed_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
 end
 
 # You can have multiple sitemaps like the above – just make sure their names are different.
@@ -17,11 +17,11 @@ end
 # automatically set <lastmod> to the date and time in page.updated_at:
 #
 sitemap_for Tag.all do |tag|
-  url tag_url(tag.name), last_mod: Time.now, change_freq: "weekly", priority: 0.7
+  url tag_url(tag.name), last_mod: Time.now, change_freq: "weekly", priority: 0.8
 end
 
 sitemap_for Article.all do |article|
-  url article_url(article), last_mod: article.updated_at, change_freq: "monthly", priority: 0.6
+  url article_url(article), last_mod: article.updated_at, change_freq: "monthly", priority: 0.8
 end
 
 # For products with special sitemap name and priority, and link to comments:
