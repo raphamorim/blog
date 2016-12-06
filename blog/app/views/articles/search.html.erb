@@ -1,11 +1,37 @@
-<% if @articles.present? %>
-    <ul>
-    <% @articles.each do |article| %>
-        <li>
-        <%= link_to article.title, article_path(article) %>
-        </li>
+<section>
+    <section id="article-top-ads">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-0498762804992593"
+                 data-ad-slot="9673006526"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <% if @articles.present? %>
+        <ul>
+        <% @articles.each do |article| %>
+            <li>
+            <%= link_to article.title, article_path(article) %>
+            </li>
+        <% end %>
+        </ul>
+        <section id="article-bottom-ads">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-0498762804992593"
+                     data-ad-slot="2149739727"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+
+    <% else %>
+      <p>There are no articles containing the term(s) <%= params[:q] %>.</p>
     <% end %>
-    </ul>
-<% else %>
-  <p>There are no articles containing the term(s) <%= params[:q] %>.</p>
-<% end %>
+</section>
