@@ -296,4 +296,26 @@ $item_text_opacity: .8;
             }
         }
     }
+
+    #recommended-tags {
+
+        border-color: #9ecaed;
+        box-shadow: 0 0 10px #9ecaed;
+
+        section {
+            ul {
+                margin-top: 5%;
+
+                li {
+                    width: 33%;
+                    float:left;
+                    height: 50px;
+                }
+            }
+        }
+
+        .clear-home-tags {
+            clear: both;
+        }
+    }
 }
