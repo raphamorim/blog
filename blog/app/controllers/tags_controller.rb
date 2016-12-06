@@ -1,8 +1,7 @@
 class TagsController < ApplicationController
 
   def index
-    @tags = Tag.all
-    @articles = Article.first(5)
+    @tags = Tag.all.order(:name)
   end
 
   def show
