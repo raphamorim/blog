@@ -147,6 +147,7 @@
             <ul class="left">
                 <% @recommended.each do |article| %>
 
+                    <% debug article.tags %>
                     <% article.tags.each do |tag| %>
                         <li>
                             <span>
@@ -157,5 +158,6 @@
                 <% end %>
             </ul>
         </section>
+        <br class="clear-home-tags" />
     </section>
 </section>
