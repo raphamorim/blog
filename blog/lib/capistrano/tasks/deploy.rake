@@ -74,7 +74,11 @@ namespace :deploy do
   desc "Backup the blog database.."
   task :dumpdb do
     on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
-      execute "docker exec -it blog_db pg_dump -U #{ENV['DB_USER']} blog"
+      puts "Generating dump file"
+      execute "docker exec -it blog_db pg_dump -U #{ENV['DB_USER']} blog > /tmp/#{ENV['DB_DUMP_FILE']}"
+      puts "Downloading dump file"
+      download! "/tmp/#{ENV['DB_DUMP_FILE']}", "."
+      execute "rm -rvf /tmp/#{ENV['DB_DUMP_FILE']}"
     end
   end
 end
