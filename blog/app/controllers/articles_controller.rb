@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  include HomeHelper
+  include UsersHelper
 
   before_action :require_login, only: [:edit, :update,
                                        :create, :new, :destroy, :upload_cover]
@@ -6,6 +8,14 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.order("id DESC").all
+  end
+
+  def top_articles
+    @articles = get_top_articles()
+  end
+
+  def recommended_articles
+    @articles = recommendation()
   end
 
   def new
