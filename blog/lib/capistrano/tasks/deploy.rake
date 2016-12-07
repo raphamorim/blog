@@ -81,4 +81,16 @@ namespace :deploy do
       execute "rm -rvf /tmp/#{ENV['DB_DUMP_FILE']}"
     end
   end
+
+  desc "Backup blog uploaded files.."
+  task :dumpuploads do
+    on "#{ENV['DEPLOY_USER']}@#{ENV['DEPLOY_SERVER']}" do
+      puts "Generating backup of uploaded file"
+      execute "docker exec -it blog_app tar -czvf #{ENV['UPLOADS_DUMP_FILE']} public/uploads"
+      execute "docker cp blog_app:/blog/#{ENV['UPLOADS_DUMP_FILE']} /tmp/#{ENV['UPLOADS_DUMP_FILE']}"
+      puts "Downloading uploaded files"
+      download! "/tmp/#{ENV['UPLOADS_DUMP_FILE']}", "."
+      execute "rm -rvf /tmp/#{ENV['UPLOADS_DUMP_FILE']}"
+    end
+  end
 end
