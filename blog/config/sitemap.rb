@@ -8,6 +8,8 @@ sitemap :site do
   url articles_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
   url tags_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
   url feed_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
+  url top_articles_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
+  url recommended_url, last_mod: Time.now, change_freq: "daily", priority: 0.9
 end
 
 # You can have multiple sitemaps like the above – just make sure their names are different.
