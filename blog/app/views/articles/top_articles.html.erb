@@ -1,0 +1,69 @@
+
+<% content_for :title, "Artigos mais acessados" %>
+<% content_for :description, "Lista de artigos mais acessados do blog sobre Ciência da computação" %>
+<% content_for :keywords, "Mais acessados, Artigos, tutoriais, conteúdo, Ciência da computação, posts, análises, pesquisa" %>
+
+<section class="preview">
+    <section id="article-top-ads">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-0498762804992593"
+                 data-ad-slot="9673006526"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <header class="articles-index">
+        <h1>Artigos mais acessados</h1>
+    </header>
+
+    <div class="action">
+        <ul>
+            <li>
+                <% if current_user %>
+                    <%= link_to 'New article', new_article_path %>
+                <% end %>
+            </li>
+        </ul>
+    </div>
+
+    <%= render 'preview' %>
+
+    <section id="article-bottom-ads">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-0498762804992593"
+                 data-ad-slot="2149739727"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+
+    <section id="recommended-tags">
+        <header class="recommended-tags-header">
+            <h3 class="atf-title">Assuntos recomendados</h3>
+        </header>
+        <section class="content-list articles-recommended-tags">
+            <ul class="left">
+                <% @articles.each do |article| %>
+
+                    <% debug article.tags %>
+                    <% article.tags.each do |tag| %>
+                        <li>
+                            <span>
+                                <%= link_to tag.name, tag_path(tag) %>
+                            </span> .
+                        </li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </section>
+        <br class="clear-articles-tags" />
+    </section>
+</section>
+
