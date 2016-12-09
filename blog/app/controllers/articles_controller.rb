@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   include HomeHelper
   include UsersHelper
+  include ArticlesHelper
 
   before_action :require_login, only: [:edit, :update,
                                        :create, :new, :destroy, :upload_cover]
@@ -24,6 +25,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by_permalink(params[:id])
+    @image_share = get_share_image(@article)
   end
 
   def search
