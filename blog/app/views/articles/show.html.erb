@@ -6,7 +6,8 @@
 <% content_for :gplus do %>
     <meta itemprop="name" content="<%= @article.title %>" >
     <meta itemprop="description" content="<%= @article.subtitle %>" >
-    <!-- <meta itemprop="image" content="http://www.example.com/image.jpg"> -->
+    <% debug @image_share %>
+    <meta itemprop="image" content="<%= @image_share %>">
 <% end %>
 
 <% content_for :twitter do %>
@@ -15,14 +16,14 @@
     <meta name="twitter:title" content="<%= @article.title %>" >
     <meta name="twitter:description" content="<%= @article.subtitle %>" >
     <meta name="twitter:creator" content="@gpantuza">
-    <!-- <meta name="twitter:image:src" content="http://www.example.com/image.jpg"> -->
+    <meta name="twitter:image:src" content="<%= @image_share %> >
 <% end %>
 
 <% content_for :facebook do %>
     <meta property="og:title" content="<%= @article.title %>"  />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<%= article_url(@article) %>" />
-    <!-- <meta property="og:image" content="http://example.com/image.jpg" /> -->
+    <meta property="og:image" content="<%= @image_share %> />
     <meta property="og:description" content="<%= @article.subtitle %>"  />
     <meta property="og:site_name" content="Blog sobre Ciência da computação - Gustavo Pantuza" />
     <meta property="article:published_time" content="<%= @article.created_at %>" />
