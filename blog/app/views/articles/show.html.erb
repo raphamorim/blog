@@ -1,6 +1,36 @@
+<% content_for :scope, raw("itemscope itemtype='https://schema.org/TechArticle'") %>
 <% content_for :title, @article.title %>
 <% content_for :description, @article.abstract %>
 <% content_for :keywords, @article.tags.map(&:name).join(", ") %>
+
+<% content_for :gplus do %>
+    <meta itemprop="name" content="<%= @article.title %>" >
+    <meta itemprop="description" content="<%= @article.subtitle %>" >
+    <!-- <meta itemprop="image" content="http://www.example.com/image.jpg"> -->
+<% end %>
+
+<% content_for :twitter do %>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@gpantuza">
+    <meta name="twitter:title" content="<%= @article.title %>" >
+    <meta name="twitter:description" content="<%= @article.subtitle %>" >
+    <meta name="twitter:creator" content="@gpantuza">
+    <!-- <meta name="twitter:image:src" content="http://www.example.com/image.jpg"> -->
+<% end %>
+
+<% content_for :facebook do %>
+    <meta property="og:title" content="<%= @article.title %>"  />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<%= article_url(@article) %>" />
+    <!-- <meta property="og:image" content="http://example.com/image.jpg" /> -->
+    <meta property="og:description" content="<%= @article.subtitle %>"  />
+    <meta property="og:site_name" content="Blog sobre Ciência da computação - Gustavo Pantuza" />
+    <meta property="article:published_time" content="<%= @article.created_at %>" />
+    <meta property="article:modified_time" content="<%= @article.updated_at %>" />
+    <meta property="article:section" content="Ciência da computação" />
+    <meta property="article:tag" content="Tecnologia" />
+<% end %>
+
 
 <section class="article-show">
     <article role="article">
