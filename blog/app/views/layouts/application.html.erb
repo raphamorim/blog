@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" itemscope itemtype="https://schema.org/TechArticle">
+<html lang="pt-br" <%= yield :scope %> >
 <head>
   <title><%= yield(:title) %></title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/sunburst.min.css">
@@ -12,7 +12,9 @@
 
   <link rel="alternate" type="application/rss+xml" title="Gustavo Pantuza Blog RSS" href="https://blog.pantuza.com/feed?format=rss">
 
-
+  <%= yield :gplus %>
+  <%= yield :twitter %>
+  <%= yield :facebook %>
 </head>
 <body>
 
