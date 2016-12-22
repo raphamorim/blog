@@ -450,6 +450,36 @@ $code_bg: #111;
         }
     }
 
+    #related-tags {
+
+        border-color: #9ecaed;
+        box-shadow: 0 0 10px #9ecaed;
+        margin-bottom: 5%;
+
+        .recommended-tags-header {
+            .title {
+                text-align: left;
+                color: white;
+                padding-left: 2%;
+            }
+        }
+
+        .article-recommended-tags {
+            .article-tags-list {
+
+                li {
+                    width: 33%;
+                    float:left;
+                    height: 50px;
+                }
+            }
+        }
+
+        .clear-tags {
+            clear: both;
+        }
+    }
+
     #disqus_thread {
         margin-top: 5%;
         position: relative;
