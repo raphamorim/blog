@@ -100,7 +100,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      logger.debug "#{params[:article][:blocks]}"
       upload_photo
 
       params.require(:article).permit(
