@@ -49,13 +49,31 @@
             <h1><%= @article.title %></h1>
             <h3><%= @article.subtitle %></h3>
             <time>Atualizado em <%= @article.updated_at.strftime "%Y/%m/%d %H:%M" %></time>
-            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "@gpantuza") %>
+            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "gpantuza") %>
         </header>
 
         <%= react_component('ContentBlock', {contentBlocks: @article.blocks, published: true}) %>
 
+        <section id="related-tags">
+            <header class="recommended-tags-header">
+                <h3 class="title">Assuntos relacionados</h3>
+            </header>
+            <section class="article-recommended-tags">
+                <ul class="article-tags-list">
+                    <% @article.tags.each do |tag| %>
+                        <li>
+                            <span>
+                                <%= link_to tag.name, tag_path(tag) %>
+                            </span> .
+                        </li>
+                    <% end %>
+                </ul>
+            </section>
+            <br class="clear-tags" />
+        </section>
+
         <section id="botton-share-section">
-            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "@gpantuza") %>
+            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "gpantuza") %>
         </section>
 
         <section class="author">
@@ -70,8 +88,10 @@
                 </div>
                 <div id="author-text">
                     <p>
-                        Posts em português para fortalecer a comunidade brasileira
-                        de Ciência da computação.
+                        Posts em português para fortalecer a comunidade
+                        brasileira de Ciência da computação. Caso tenha
+                        dúvidas, críticas ou sugestões de temas ou para o
+                        blog deixe nos cometários :)
                     </p>
                 </div>
             </div>
@@ -94,4 +114,5 @@
     </article>
 
     <div id="disqus_thread"></div>
+
 </section>
