@@ -39,7 +39,7 @@ module UsersHelper
       result = request_analytics_by_location(location)
       result.rows.each do |row|
         if row[1].include? "/artigos/" and not row[1].include? "/artigos/new"
-          article = Article.find_by_permalink(row[1].split("/artigos/")[-1].split("/")[0])
+          article = Article.includes(:tags).find_by_permalink(row[1].split("/artigos/")[-1].split("/")[0])
           if article
             recommended.push(article)
             $redis.sadd(location, article.to_json)
