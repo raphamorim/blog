@@ -9,6 +9,14 @@
 }
 
 .preview {
+
+    #article-top-ads, #tags-bottom-ads {
+        width: 60%;
+        position: relative;
+        left: 20%;
+        margin-top: 2%;
+    }
+
     .action {
         height: 50px;
     }
@@ -295,10 +303,6 @@ $code_bg: #111;
         width: 60%;
 		position: relative;
 		left: 20%;
-
-        #article-top-ads {
-
-        }
 
         header {
 
