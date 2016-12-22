@@ -63,7 +63,7 @@
                     <% @article.tags.each do |tag| %>
                         <li>
                             <span>
-                                <%= link_to tag.name, tag_path(tag) %>
+                                <%= link_to tag.name, tag_path(tag.name) %>
                             </span> .
                         </li>
                     <% end %>
