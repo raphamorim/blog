@@ -6,7 +6,6 @@
 <% content_for :gplus do %>
     <meta itemprop="name" content="<%= @article.title %>" >
     <meta itemprop="description" content="<%= @article.subtitle %>" >
-    <% debug @image_share %>
     <meta itemprop="image" content="<%= @image_share %>">
 <% end %>
 
@@ -50,13 +49,13 @@
             <h1><%= @article.title %></h1>
             <h3><%= @article.subtitle %></h3>
             <time>Atualizado em <%= @article.updated_at.strftime "%Y/%m/%d %H:%M" %></time>
-            <%= social_share_button_tag(@article.title) %>
+            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "@gpantuza") %>
         </header>
 
         <%= react_component('ContentBlock', {contentBlocks: @article.blocks, published: true}) %>
 
         <section id="botton-share-section">
-            <%= social_share_button_tag(@article.title) %>
+            <%= social_share_button_tag(@article.title, :url => article_url(@article), :image => @image_share, desc: @article.subtitle, via: "@gpantuza") %>
         </section>
 
         <section class="author">
