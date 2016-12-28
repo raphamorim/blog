@@ -4,38 +4,49 @@
 
 .tags-index {
 
-    h1 {
-		color: green;
-		text-align: center;
-		font-size: 40px;
-		font-family: monospace;
-		font-weight: 100;
-		letter-spacing: 5px;
+
+    #tags-top-ads, #tags-bottom-ads {
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 5%;
     }
-}
 
-.tags-list {
+    .tags-index-header {
 
-    position: relative;
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 5%;
-
-    ul {
-        padding-left: 0px;
-
-        li {
-            width: 33%;
-            height: 75px;
-            float: left;
+        h1 {
+            color: green;
+            text-align: center;
+            font-size: 40px;
             font-family: monospace;
-            font-size: x-large;
-            letter-spacing: 3px;
+            font-weight: 100;
+            letter-spacing: 5px;
         }
     }
 
-    .tags-clear-section {
-        clear: both;
+    .tags-list {
+
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 5%;
+
+        ul {
+            padding-left: 0px;
+
+            li {
+                width: 33%;
+                height: 75px;
+                float: left;
+                font-family: monospace;
+                font-size: x-large;
+                letter-spacing: 3px;
+            }
+        }
+
+        .tags-clear-section {
+            clear: both;
+        }
     }
 }
 
