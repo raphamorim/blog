@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   get '/mais-acessados', to: 'articles#top_articles', :as => 'top_articles'
   get '/artigos-recomendados', to: 'articles#recommended_articles', :as => 'recommended'
 
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
