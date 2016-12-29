@@ -24,6 +24,8 @@ module Blog
     config.log_tags = [:subdomain, :uuid]
     config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 
+    config.exceptions_app = self.routes
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end
