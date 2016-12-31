@@ -6,7 +6,6 @@ class ContentBlock extends React.Component {
 
   constructor (props) {
 
-    console.log(props);
     super(props);
 
     this.state = {
@@ -19,7 +18,6 @@ class ContentBlock extends React.Component {
 
     if(this.props.contentBlocks &&
        Object.keys(this.props.contentBlocks).length > 0) {
-      console.log(this.props.contentBlocks);
       this.createComponents();
     }
   }
