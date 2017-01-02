@@ -170,6 +170,7 @@ class ParagraphBlock extends React.Component {
         }
     }
 
+    this.updateState();
     paragraphDiv.style.backgroundColor = "black";
   }
 
