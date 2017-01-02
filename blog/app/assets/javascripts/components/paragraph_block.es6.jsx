@@ -124,9 +124,15 @@ class ParagraphBlock extends React.Component {
       event.stopPropagation();
   }
 
-  change (event) {
+  change (element) {
+
     let input = document.getElementById("paragraph-" + this.props.order);
-    input.value = event.target.innerHTML;
+    input.value = element.innerHTML;
+  }
+
+  changeCallback (event) {
+
+    this.change(event.target);
   }
 
 
@@ -170,7 +176,7 @@ class ParagraphBlock extends React.Component {
         }
     }
 
-    this.updateState();
+    this.change(paragraphDiv);
     paragraphDiv.style.backgroundColor = "black";
   }
 
@@ -198,7 +204,7 @@ class ParagraphBlock extends React.Component {
           className="unpublished"
           onKeyDown={this.handleKeyDown.bind(this)}
           onKeyUp={this.handleKeyUp.bind(this)}
-          onInput={this.change.bind(this)}
+          onInput={this.changeCallback.bind(this)}
           onClick={this.allowEdition.bind(this)}
           onBlur={this.closeEdition.bind(this)}
           dangerouslySetInnerHTML={{__html: this.state.value}} />
