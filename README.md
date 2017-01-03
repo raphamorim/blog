@@ -2,6 +2,9 @@ My personal blog
 ================
 
 This is my [personal blog](https://blog.pantuza.com) implementation using Ruby on Rails.
+Use this project for studing purpose. It has a content publication engine for my own needs.
+It is not an extensible and full featured CMS. It was designed to be simple and allows me publish 
+computer science articles.
 
 ### Install locally
 
